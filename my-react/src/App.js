@@ -3,13 +3,28 @@ import "./App.css";
 
 const App = () => {
 	return (
+		<div>
+			<Header />
+			<Technologies />
+		</div>
+	);
+};
+const Technologies = () => {
+	return (
+		<ul>
+			<li>html</li>
+			<li>css</li>
+			<li>js</li>
+			<li>react</li>
+		</ul>
+	);
+};
+const Header = () => {
+	return (
 		<div className='App'>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
+			<a>Home</a>
+			<a>BBBB</a>
+			<a>CCCCC</a>
 		</div>
 	);
 };
