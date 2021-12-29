@@ -1,14 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import Profile from "./components/Profile";
 
 const App = () => {
 	return (
 		<div className='wrapper'>
-			<header className='header'>
-				<img src='logo'></img>
-			</header>
-			<nav className='nav'>links</nav>
-			<main className='content'>main</main>
+			<Header />
+			<Navbar />
+			<Profile />
 		</div>
 	);
 };
