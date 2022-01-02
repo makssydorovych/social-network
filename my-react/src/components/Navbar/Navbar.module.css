@@ -1,0 +1,17 @@
+ul li {
+	list-style-type:decimal;
+ }
+ .nav{
+	grid-area: n;
+	background: greenyellow;
+ }
+ .item {
+	 color: white;
+ }
+ active{
+	 color: gold;
+ }
+ a{
+	
+	 text-decoration: none;
+ }

@@ -1,6 +1,4 @@
-ul li {
-  list-style-type:decimal;
-}
+
 .wrapper{
   width: 1200px;
   margin: 0 auto;
@@ -12,15 +10,5 @@ ul li {
  grid-template-columns: 2fr 10fr;
  grid-gap: 10px;
 }
-.header{
-  grid-area: h;
-  background: green;
-}
-.nav{
-  grid-area: n;
-  background: greenyellow;
-}
-.content{
-  grid-area: c;
-  background: grey;
-}
+
+
