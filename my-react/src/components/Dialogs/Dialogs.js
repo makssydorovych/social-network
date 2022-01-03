@@ -1,5 +1,5 @@
 import s from "./Dialogs.module.css";
 const Dialogs = () => {
-	return <Dialogs className={s.dialogs}>Dialogs</Dialogs>;
+	return <div className={s.content}>Dialogs</div>;
 };
 export default Dialogs;

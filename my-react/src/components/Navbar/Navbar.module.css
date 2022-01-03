@@ -4,14 +4,11 @@ ul li {
  .nav{
 	grid-area: n;
 	background: greenyellow;
+	padding: 20px;
  }
- .item {
+
+ .item a{
 	 color: white;
- }
- active{
-	 color: gold;
- }
- a{
-	
 	 text-decoration: none;
  }
+ .item .active {color: gold;}
