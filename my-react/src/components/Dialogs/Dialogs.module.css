@@ -1,7 +1,19 @@
-.content{
-	grid-area: c;
-	background: grey;
- }
- .content img {
-	width: 100%;
- }
+.dialogs{
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+}
+.dialogsItems{
+	padding: 10px;
+}
+.active{
+	color: gold !important;
+}
+.dialog{
+	color: rgb(48, 226, 72);
+}
+.messages{
+	padding: 10px;
+}
+.message{
+	color: red;
+}
