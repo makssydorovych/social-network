@@ -21,7 +21,7 @@ const Dialogs = () => {
 		
 	]
 	;let messagesData = [
-		{ id: 1, message: "Hello" },
+		{ id: 1, message: "Hello WORLD!!!!!" },
 		{ id: 2, message: "hello World" },
 		{ id: 3, message: "hellodxxsxs" },
 		{ id: 4, message: "lorem ispum dolor" },
