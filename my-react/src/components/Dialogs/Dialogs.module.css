@@ -4,16 +4,17 @@
 }
 .dialogsItems{
 	padding: 10px;
+	
 }
 .active{
 	color: gold !important;
 }
 .dialog{
-	color: rgb(48, 226, 72);
+	color: rgb(48, 226, 72) !important;
 }
 .messages{
 	padding: 10px;
 }
 .message{
-	color: red;
+	color: rgb(134, 39, 39);
 }
