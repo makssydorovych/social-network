@@ -4,7 +4,7 @@ const ProfileInfo = () => {
 	return (
 		<div>
 			<div>
-				<img src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg'></img>
+				<img src="https://res.cloudinary.com/dkombzxne/image/upload/v1653243045/small_11_c44e5e4839.jpg"></img>
 			</div>
 			<div className={s.descriptionBlock}>ava + desc</div>
 		</div>
