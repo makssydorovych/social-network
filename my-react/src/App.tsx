@@ -1,19 +1,21 @@
 import "./App.css";
-import React from "react";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
-const App = () => {
+const App = (props) => {
 	return (
 		<div className='app-wrapper'>
 			<Header />
 			<Navbar />
 			<Routes>
-				<Route path='/profile' element={<Profile />} />
-				<Route path='/dialogs' element={<Dialogs />} />
+				{/*<Route exact path="/" element={<Profile />}/>*/}
+				<Route path='/profile' element={<Profile posts={props.state.profilePage.posts}/>} />
+				<Route path='/dialogs' element={<Dialogs dialogs={props.state.messagesPage.dialogs} messages={props.state.messagesPage.messages}/>} />
+			{/*	<Route path='/profile' render={() => < Dialogs />} />
+				<Route path='/profile' render={() => < Profile />} />*/}
 			</Routes>
 		</div>
 	);

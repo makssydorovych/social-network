@@ -4,3 +4,6 @@
 .posts{
 	margin-top: 10px;
 }
+img{
+	max-width: 50% !important;
+}
