@@ -9,13 +9,12 @@ const App = (props) => {
 	return (
 		<div className='app-wrapper'>
 			<Header />
-			<Navbar />
+			<Navbar friends={props.state.sidebar.friends}/>
 			<Routes>
 				{/*<Route exact path="/" element={<Profile />}/>*/}
-				<Route path='/profile' element={<Profile posts={props.state.profilePage.posts}/>} />
+				<Route path='/profile' element={<Profile posts={props.state.profilePage.posts} />} />
 				<Route path='/dialogs' element={<Dialogs dialogs={props.state.messagesPage.dialogs} messages={props.state.messagesPage.messages}/>} />
-			{/*	<Route path='/profile' render={() => < Dialogs />} />
-				<Route path='/profile' render={() => < Profile />} />*/}
+
 			</Routes>
 		</div>
 	);
