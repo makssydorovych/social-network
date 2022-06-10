@@ -14,7 +14,7 @@ const App = (props) => {
 			<Navbar friends={props.state.sidebar.friends}/>
 			<Routes>
 				{/*<Route exact path="/" element={<Profile />}/>*/}
-				<Route path='/profile' element={<Profile posts={props.state.profilePage.posts} addPost={addPos}/>} />
+				<Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>} />
 				<Route path='/dialogs' element={<Dialogs dialogs={props.state.messagesPage.dialogs} messages={props.state.messagesPage.messages}/>} />
 
 			</Routes>
