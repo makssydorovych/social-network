@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./App.jsx";
+import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals";
-import { addPost, updateNewPostText} from "./redux/state"
+import { addPost, updateNewPostText} from "./redux/state.tsx"
 
 export let rerenderEntireTree = (state) =>{ReactDOM.render(
 	<React.StrictMode>

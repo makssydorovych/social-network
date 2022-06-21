@@ -1,6 +1,36 @@
 import {rerenderEntireTree} from "../render";
+import Posts from "../components/Profile/MyPosts/Post/Posts";
+import Message from "../components/Dialogs/Message/Message";
+type MessageType = {
+    id: number
+    message: string
+}
+type DialogType = {
+    id: number
+    name: string
+}
+type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+type MessagesPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+type SidebarType = {
 
-let state = {
+}
+type RootStateType = {
+    profilePage: ProfilePageType
+    messagesPage: MessagesPageType
+    sidebar: SidebarType
+}
+let state: RootStateType = {
     profilePage: {
         posts :[
             { id: 1, message: "Hello", likesCount:12},
