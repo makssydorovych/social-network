@@ -1,6 +1,5 @@
 import {rerenderEntireTree} from "../render";
-import Posts from "../components/Profile/MyPosts/Post/Posts";
-import Message from "../components/Dialogs/Message/Message";
+
 type MessageType = {
     id: number
     message: string

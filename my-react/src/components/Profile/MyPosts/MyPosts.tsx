@@ -22,7 +22,7 @@ const MyPosts = (props) => {
 			<h3>My post</h3>
 			<div>
 				<div>
-					<textarea onaChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+					<textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
 				</div>
 				<div>
 					<button type={"submit"} onClick={ addPost }>Add Post</button>
