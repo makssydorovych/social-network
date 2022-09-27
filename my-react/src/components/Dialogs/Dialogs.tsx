@@ -1,6 +1,9 @@
 
+// @ts-ignore
 import s from "./Dialogs.module.css";
+// @ts-ignore
 import DialogItem from "./DialogItem/DialogItem.tsx";
+// @ts-ignore
 import Message from "./Message/Message.tsx";
 
 const Dialogs = (props) => {
