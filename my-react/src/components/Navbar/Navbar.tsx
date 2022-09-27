@@ -1,6 +1,14 @@
 import s from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
-const Navbar = (props) => {
+type PropsType = {
+	friends: Array<friends>
+
+}
+type friends = {
+	id: number
+	name: string
+}
+const Navbar = (props: PropsType) => {
 	return (
 		<nav className={s.nav}>
 			<div className={`${s.item}`}>

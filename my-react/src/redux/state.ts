@@ -1,35 +1,35 @@
 import {rerenderEntireTree} from "../render";
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
-type DialogType = {
+export  type DialogType = {
     id: number
     name: string
 }
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
-type FriendsType ={
+export type FriendsType ={
     id: number
     name: string
 }
 
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 
 }
-type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
 
-type sidebarType = {
+export type sidebarType = {
     friends: Array<FriendsType>
 
 }
