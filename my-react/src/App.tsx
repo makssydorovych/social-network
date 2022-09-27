@@ -1,16 +1,19 @@
 import "./App.css";
-// @ts-ignore
-import Header from "./components/Header/Header.tsx";
-// @ts-ignore
-import Navbar from "./components/Navbar/Navbar.tsx";
-// @ts-ignore
-import Profile from "./components/Profile/Profile.tsx";
-// @ts-ignore
-import Dialogs from "./components/Dialogs/Dialogs.tsx";
+import React from 'react';
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
+import Dialogs from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
+import {RootStateType} from "./redux/state";
 
+type PropsType = {
+    state: RootStateType,
+    addPost: (postMessage: string) => void
+    updateNewPostText: (newText: string) => void
+}
 
-const App = (props) => {
+const App = (props: PropsType) => {
     return (
         <div className='app-wrapper'>
             <Header/>

@@ -1,7 +1,8 @@
+import React from "react";
 import s from "./Profile.module.css";
-import MyPosts from "./MyPosts/MyPosts.tsx";
-import ProfileInfo from "../ProfileInfo/ProfileInfo.tsx";
-import {updateNewPostText} from "../../redux/state.tsx";
+import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "../ProfileInfo/ProfileInfo";
+
 const Profile = (props) => {
 
 	return (

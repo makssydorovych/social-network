@@ -1,5 +1,5 @@
 import s from "./ProfileInfo.module.css";
-
+import React from "react";
 const ProfileInfo = () => {
 	return (
 		<div>
