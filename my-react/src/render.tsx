@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { addPost, updateNewPostText} from "./redux/state"
 import {RootStateType} from "./redux/state"
 
+
 export let rerenderEntireTree = (state: RootStateType) =>{
 	ReactDOM.render(
 	<React.StrictMode>
