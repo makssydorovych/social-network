@@ -8,7 +8,7 @@ import {RootStateType} from "./redux/state";
 
 type PropsType = {
     state: RootStateType,
-    addPost: (postMessage: string) => void
+    addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
@@ -18,7 +18,7 @@ const App = (props: PropsType) => {
             <Header/>
             <Navbar friends={props.state.sidebar.friends}/>
             <Routes>
-                {/*<Route exact path="/" element={<Profile />}/>*/}
+
                 <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}
                                                          updateNewPostText={props.updateNewPostText}/>}/>
                 <Route path='/dialogs' element={<Dialogs dialogs={props.state.dialogPage.dialogs}

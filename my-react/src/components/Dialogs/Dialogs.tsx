@@ -9,7 +9,7 @@ const Dialogs = (props: DialogPageType) => {
 	let dialogsElement = props.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> );
 	let messegaesElements = props.messages.map( m => <Message message={m.message} id={m.id}/>)
 	return (
-		<div className={s.dialogs}>
+		<div  className={s.dialogs}>
 			<div className={s.dialogsItem}>
 		{dialogsElement}
 		</div>
