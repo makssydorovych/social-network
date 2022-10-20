@@ -3,12 +3,12 @@ import Posts from "./Post/Posts";
 import React from 'react';
 import {PostType} from "../../../redux/state";
 
-
 type PropsType = {
-    addPost: () => void
+
     updateNewPostText: (newText: string) => void
     posts: Array<PostType>
     newPostText: string
+    addPost: () => void
 }
 
 const MyPosts = (props: PropsType) => {
@@ -17,9 +17,7 @@ const MyPosts = (props: PropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-
-        props.addPost();
-        ;
+        props.addPost()
 
     };
     let onPostChange = () => {

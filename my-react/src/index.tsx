@@ -7,16 +7,17 @@ import store from "./redux/state";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import { addPost, updateNewPostText} from "./redux/state"
+
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-const rerenderEntireTree = (state) => {
+const rerenderEntireTree =  () => {
+
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={store.getState()} addPost={store.addPost} updateNewPostText={store.updateNewPostText}/>
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>,
 
@@ -24,8 +25,9 @@ const rerenderEntireTree = (state) => {
 
 };
 
-rerenderEntireTree(store._state);
+
 store.subscribe(rerenderEntireTree);
+rerenderEntireTree();
 reportWebVitals();
 
 serviceWorker.unregister();

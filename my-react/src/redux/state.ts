@@ -36,10 +36,11 @@ export type RootStateType = {
 export type StoreType = {
     _state: RootStateType
     updateNewPostText: (newText: string) => void
-    rerenderEntireTree: (state : RootStateType) => void
-    addPost: (newPost: PostType) => void
+    _callSubscriber: (callback: () => void) => void
+    addPost: () => void
     subscribe: (observer: () => void) => void
-    getState: () => void
+    getState: () => RootStateType
+    _onChange: () => void
 }
 
 
@@ -80,13 +81,18 @@ let store: StoreType = {
         },
 
 
+    }, _onChange() {
+        return ""
     },
-    getState(){
+
+    _callSubscriber(callback: () => void) {
+        this._onChange = callback
+    },
+    getState() {
+
         return this._state
     },
-    rerenderEntireTree() {
-        console.log("state")
-    },
+
     addPost() {
         const newPost: PostType = {
             id: 5,
@@ -95,16 +101,19 @@ let store: StoreType = {
         };
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = "";
-        this.rerenderEntireTree(this._state);
+        this._onChange();
     },
     updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
-        this.rerenderEntireTree(this._state);
+        this._onChange();
     },
-    subscribe(observer: () => void) {
-        this.rerenderEntireTree = observer;
+    subscribe(observer) {
+        this._onChange = observer;
     }
 
 }
 export default store;
+
 // window.store = store;
+// export class addPost {
+// }
