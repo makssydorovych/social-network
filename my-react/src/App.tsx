@@ -19,8 +19,11 @@ const App : React.FC<PropsType> = (props) => {
             <Navbar friends={state.sidebar.friends}/>
             <Routes>
 
-                <Route path='/profile' element={<Profile profilePage={state.profilePage} addPost={props.store.addPost.bind(props.store)}
-                                                         updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                <Route path='/profile' element={<Profile profilePage={state.profilePage}
+
+                                                         dispatch={props.store.dispatch.bind(props.store)}
+
+                />}/>
                 <Route path='/dialogs' element={<Dialogs dialogs={state.dialogPage.dialogs}
                                                          messages={state.dialogPage.messages}/>}/>
 

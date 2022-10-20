@@ -35,14 +35,28 @@ export type RootStateType = {
 }
 export type StoreType = {
     _state: RootStateType
-    updateNewPostText: (newText: string) => void
+    // updateNewPostText: (newText: string) => void
     _callSubscriber: (callback: () => void) => void
-    addPost: () => void
+    // addPost: () => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
     _onChange: () => void
+    dispatch: (action: ActionsTypes ) => void
 }
-
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType;
+type AddPostActionType = ReturnType<typeof addPostAC>
+type ChangeNewTextActionType = ReturnType<typeof changeNewPostTextAC>
+export const addPostAC = () =>  {
+    return {
+        type: 'ADD-POST'
+    } as const
+}
+export const changeNewPostTextAC = (text: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    } as const
+}
 
 let store: StoreType = {
     _state: {
@@ -92,24 +106,26 @@ let store: StoreType = {
 
         return this._state
     },
-
-    addPost() {
-        const newPost: PostType = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._onChange();
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._onChange();
-    },
     subscribe(observer) {
         this._onChange = observer;
+    },
+    dispatch(action){
+        if(action.type === 'ADD-POST'){
+            const newPost: PostType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._onChange();
+        }else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText;
+            this._onChange();
+        }
+
     }
+
 
 }
 export default store;
