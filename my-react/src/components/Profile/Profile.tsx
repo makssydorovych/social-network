@@ -7,8 +7,6 @@ import {ActionsTypes, ProfilePageType} from "../../redux/state";
 
 type PropsType = {
     profilePage: ProfilePageType
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 const Profile = (props: PropsType) => {

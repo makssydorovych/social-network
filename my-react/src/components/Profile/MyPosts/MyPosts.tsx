@@ -1,6 +1,6 @@
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts";
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {ActionsTypes, PostType, changeNewPostTextAC, addPostAC} from "../../../redux/state";
 
 
@@ -13,18 +13,16 @@ type PropsType = {
 const MyPosts = (props: PropsType) => {
     let postsElements =
         props.posts.map(p => <Posts key={p.id} message={p.message} likesCount={p.likesCount} id={p.id}/>);
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let newPostElement = props.newPostText;
 
     let addPost = () => {
         props.dispatch(addPostAC())
+        props.dispatch(changeNewPostTextAC(""))
 
     };
-    let onPostChange = () => {
-        if (newPostElement.current?.value) {
-
-            props.dispatch(changeNewPostTextAC(props.newPostText));
-
-        }
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let newText = e.currentTarget.value;
+        props.dispatch(changeNewPostTextAC(newText))
     }
     return (
         <div className={s.postBlock}>
@@ -33,8 +31,8 @@ const MyPosts = (props: PropsType) => {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        ref={newPostElement}
-                        value={props.newPostText}/>
+
+                        value={newPostElement}/>
                 </div>
                 <div>
                     <button type={"submit"} onClick={addPost}>Add Post</button>
