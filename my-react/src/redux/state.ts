@@ -23,6 +23,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newPostBody: string
 }
 export type sidebarType = {
     friends: Array<FriendsType>
@@ -41,22 +42,21 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
     _onChange: () => void
-    dispatch: (action: ActionsTypes ) => void
+    dispatch: (action: ActionsTypes) => void
 }
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType;
 type AddPostActionType = ReturnType<typeof addPostAC>
 type ChangeNewTextActionType = ReturnType<typeof changeNewPostTextAC>
-export const addPostAC = () =>  {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
+export const addPostAC = () => ({type: 'ADD-POST' as const})
 export const changeNewPostTextAC = (text: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: text
     } as const
 }
+export const SendMessageAC = () => ({type: 'SEND_MESSAGE'})
+export const updateNewMessageBodyAC = (body: string) =>
+    ({type: 'UPDATE_NEW_MESSAGE_BODY', body: body})
 
 let store: StoreType = {
     _state: {
@@ -68,7 +68,7 @@ let store: StoreType = {
                 {id: 4, message: "lorem ispum dolor", likesCount: 1},
 
             ],
-            newPostText: "Post Text"
+            newPostText: "Post Text..."
         },
         dialogPage: {
             messages: [
@@ -84,6 +84,7 @@ let store: StoreType = {
                 {id: 4, name: "elf"},
 
             ],
+            newMessageBody: ""
 
         },
         sidebar: {
@@ -109,8 +110,8 @@ let store: StoreType = {
     subscribe(observer) {
         this._onChange = observer;
     },
-    dispatch(action){
-        if(action.type === 'ADD-POST'){
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
             const newPost: PostType = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -119,9 +120,18 @@ let store: StoreType = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = "";
             this._onChange();
-        }else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._onChange();
+        } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
+            this._state.dialogPage.newMessageBody = action.body;
+            this._onChange();
+        }else if (action.type === 'SEND_MESSAGE'){
+            let body = this._state.dialogPage.newMessageBody;
+                this._state.dialogPage.messages.push({id:6, message: body});
+            this._state.dialogPage.newMessageBody = "";
+
+
         }
 
     }

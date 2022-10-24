@@ -20,8 +20,8 @@ const MyPosts = (props: PropsType) => {
 
     };
     let onPostChange = () => {
-        if (newPostElement.current) {
-            // let text = newPostElement.current.value;
+        if (newPostElement.current?.value) {
+
             props.dispatch(changeNewPostTextAC(props.newPostText));
 
         }

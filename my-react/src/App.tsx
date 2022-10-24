@@ -25,7 +25,9 @@ const App : React.FC<PropsType> = (props) => {
 
                 />}/>
                 <Route path='/dialogs' element={<Dialogs dialogs={state.dialogPage.dialogs}
-                                                         messages={state.dialogPage.messages}/>}/>
+                                                         messages={state.dialogPage.messages}
+                                                         dispathc={props.store.dispatch.bind(props.store)}
+                />}/>
 
             </Routes>
         </div>
