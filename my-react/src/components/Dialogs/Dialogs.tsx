@@ -6,7 +6,7 @@ import {
 	ActionsTypes, DialogPageType,
 	SendMessageAC,
 	updateNewMessageBodyAC
-} from "../../redux/state";
+} from "../../redux/store";
 import {ChangeEvent} from "react";
 
 type DialogsPropsType = {
