@@ -1,4 +1,8 @@
-import {AddPostActionType, ChangeNewTextActionType, profileReducer} from "./ProfileReducer";
+import {
+    AddPostActionType,
+    ChangeNewTextActionType,
+    profileReducer
+} from "./ProfileReducer";
 import {ChangeNewPostTextActionType, dialogsReducer, SendMessageActionType} from "./DialogsReducer";
 import {sidebarReducer} from "./SidebarReducer";
 
@@ -108,14 +112,15 @@ let store: StoreType = {
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._onChange();
-
-
 
     }
 
 
 }
+
+
 export default store;
 
 // window.store = store;
