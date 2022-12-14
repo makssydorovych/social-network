@@ -1,6 +1,23 @@
 
+const initialState = {
+        messages: [
+            {id: 1, message: "Hello WORLD!!!!!"},
+            {id: 2, message: "hello World"},
+            {id: 3, message: "hellodxxsxs"},
+            {id: 4, message: "lorem ispum dolor"},
 
- export const dialogsReducer = (state: any, action: any) =>{
+        ], dialogs: [
+            {id: 1, name: "Maksym"},
+            {id: 2, name: "Maksym2"},
+            {id: 3, name: "Maksym3"},
+            {id: 4, name: "elf"},
+
+        ],
+        newPostBody: ""
+
+
+}
+ export const dialogsReducer = (state = initialState, action: any) =>{
     switch (action.type) {
         case 'UPDATE_NEW_MESSAGE_BODY': state.newPostBody = action.body;
         return state;

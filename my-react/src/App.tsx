@@ -6,9 +6,10 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
 import {StoreType} from "./redux/store";
 import React from "react";
+import {AppRootStateType} from "./redux/redux-store";
 
 type PropsType = {
-  store: StoreType
+  store: AppRootStateType
 }
 
 const App : React.FC<PropsType> = (props) => {
