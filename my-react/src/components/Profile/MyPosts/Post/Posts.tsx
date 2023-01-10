@@ -10,7 +10,7 @@ const Posts = (props: PropsType) => {
 				<div>
 					<img src='http://www.hotavatars.com/wp-content/uploads/2019/01/I80W1Q0.png' alt={""}></img>
 				</div>
-				{props.message}
+				{props.name}
 			</div>
 		</div>
 	);

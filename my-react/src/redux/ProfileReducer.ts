@@ -2,10 +2,10 @@ import {ActionsTypes, PostType} from "./store";
 
 const initialState = {
     posts: [
-        {id: 1, message: "Hello", likesCount: 12},
-        {id: 2, message: "hello World", likesCount: 6},
-        {id: 3, message: "hellodxxsasasaxs", likesCount: 14},
-        {id: 4, message: "lorem ispum dolor", likesCount: 1},
+        {id: 1, name: "Hello", likesCount: 12},
+        {id: 2, name: "hello World", likesCount: 6},
+        {id: 3, name: "hellodxxsasasaxs", likesCount: 14},
+        {id: 4, name: "lorem ispum dolor", likesCount: 1},
 
     ],
     newPostText: "Post Text..."
@@ -16,7 +16,7 @@ export const profileReducer = (state= initialState, action: ActionsTypes) => {
         case 'ADD-POST':
             const newPost: PostType = {
                 id: 5,
-                message: state.newPostText,
+                name: state.newPostText,
                 likesCount: 0
             };
             state.posts.push(newPost);
