@@ -2,13 +2,15 @@ import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts";
 import React, {ChangeEvent} from 'react';
 import {ActionsTypes, PostType} from "../../../redux/store";
-import {changeNewPostTextAC, addPostAC} from "../../../redux/ProfileReducer";
+
 
 
 type PropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (newText: string) => void
+    addPost: () => void
+
 }
 
 const MyPosts = (props: PropsType) => {
@@ -16,14 +18,15 @@ const MyPosts = (props: PropsType) => {
         props.posts.map(p => <Posts key={p.id} message={p.message} likesCount={p.likesCount} id={p.id}/>);
     let newPostElement = props.newPostText;
 
-    let addPost = () => {
-        props.dispatch(addPostAC())
-        props.dispatch(changeNewPostTextAC(""))
+    let onAddPost = () => {
+        props.addPost();
+
 
     };
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newText = e.currentTarget.value;
-        props.dispatch(changeNewPostTextAC(newText))
+        // props.dispatch(changeNewPostTextAC(newText))
+        props.updateNewPostText(newText);
     }
     return (
         <div className={s.postBlock}>
@@ -36,7 +39,7 @@ const MyPosts = (props: PropsType) => {
                         value={newPostElement}/>
                 </div>
                 <div>
-                    <button type={"submit"} onClick={addPost}>Add Post</button>
+                    <button type={"submit"} onClick={onAddPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.posts}>

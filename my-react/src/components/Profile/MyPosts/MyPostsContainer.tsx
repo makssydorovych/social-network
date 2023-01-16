@@ -1,48 +1,29 @@
-import s from "./MyPosts.module.css";
-import Posts from "./Post/Posts";
-import React, {ChangeEvent} from 'react';
+
+import React from 'react';
 import {ActionsTypes, PostType} from "../../../redux/store";
 import {changeNewPostTextAC, addPostAC} from "../../../redux/ProfileReducer";
+import MyPosts from "./MyPosts";
+import {ReduxStoreType} from "../../../redux/redux-store";
 
 
 type PropsType = {
-    posts: Array<PostType>
-    newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    store: ReduxStoreType
 }
 
-const MyPosts = (props: PropsType) => {
-    let postsElements =
-        props.posts.map(p => <Posts key={p.id} message={p.message} likesCount={p.likesCount} id={p.id}/>);
-    let newPostElement = props.newPostText;
-
+const MyPostsContainer = (props: PropsType) => {
+let state = props.store.getState()
     let addPost = () => {
-        props.dispatch(addPostAC())
-        props.dispatch(changeNewPostTextAC(""))
+        props.store.dispatch(addPostAC())
+        props.store.dispatch(changeNewPostTextAC(""))
 
     };
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newText = e.currentTarget.value;
-        props.dispatch(changeNewPostTextAC(newText))
-    }
-    return (
-        <div className={s.postBlock}>
-            <h3>My post</h3>
-            <div>
-                <div>
-                    <textarea
-                        onChange={onPostChange}
+    let onPostChange = (newText: string) => {
 
-                        value={newPostElement}/>
-                </div>
-                <div>
-                    <button type={"submit"} onClick={addPost}>Add Post</button>
-                </div>
-            </div>
-            <div className={s.posts}>
-                {postsElements}
-            </div>
-        </div>
+        props.store.dispatch(changeNewPostTextAC(newText))
+    }
+
+    return (
+        <MyPosts posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} updateNewPostText={onPostChange} addPost={addPost}/>
     );
 };
-export default MyPosts;
+export default MyPostsContainer;

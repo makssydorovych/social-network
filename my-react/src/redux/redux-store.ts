@@ -7,7 +7,7 @@ import {profileReducer} from "./ProfileReducer";
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
-       profilePage: profileReducer,
+        profilePage: profileReducer,
         dialogsPage: dialogsReducer,
         sidebar: sidebarReducer,
 
