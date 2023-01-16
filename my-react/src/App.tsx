@@ -6,10 +6,10 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
 import {StoreType} from "./redux/store";
 import React from "react";
-import {AppRootStateType} from "./redux/redux-store";
+import {AppRootStateType, ReduxStoreType} from "./redux/redux-store";
 
 type PropsType = {
-  store: AppRootStateType
+  store: ReduxStoreType
 }
 
 const App : React.FC<PropsType> = (props) => {
@@ -24,7 +24,7 @@ const App : React.FC<PropsType> = (props) => {
                                                          dispatch={props.store.dispatch.bind(props.store)}
 
                 />}/>
-                <Route path='/dialogs' element={<Dialogs dialogPage={state.dialogPage}
+                <Route path='/dialogs' element={<Dialogs dialogPage={state.dialogsPage}
                                                          // messages={state.dialogPage.messages}
                                                          dispatch={props.store.dispatch.bind(props.store)}
                                                          // newPostBody={""}

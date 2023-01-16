@@ -1,10 +1,8 @@
-
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {
 	ActionsTypes, DialogPageType
-
 } from "../../redux/store";
 import {
 
@@ -21,7 +19,7 @@ type DialogsPropsType = {
 const Dialogs = (props: DialogsPropsType) => {
 
 	let dialogsElement = props.dialogPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> );
-	let messagesElements = props.dialogPage.messages.map( m => <Message message={m.name} id={m.id}/>)
+	let messagesElements = props.dialogPage.messages.map( m => <Message message={m.message} id={m.id}/>)
 	let newMessageBody = props.dialogPage.newPostBody;
 	let onSendMessageClick = () =>{
 	props.dispatch(SendMessageAC())

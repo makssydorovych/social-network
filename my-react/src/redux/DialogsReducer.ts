@@ -1,12 +1,13 @@
 
 const initialState = {
         messages: [
-            {id: 1, name: "Hello WORLD!!!!!"},
-            {id: 2, name: "hello World"},
-            {id: 3, name: "hellodxxsxs"},
-            {id: 4, name: "lorem ispum dolor"},
+            {id: 1, message: "Hello WORLD!!!!!"},
+            {id: 2, message: "hello World"},
+            {id: 3, message: "hellodxxsxs"},
+            {id: 4, message: "lorem ispum dolor"},
 
-        ], dialogs: [
+        ],
+    dialogs: [
             {id: 1, name: "Maksym"},
             {id: 2, name: "Maksym2"},
             {id: 3, name: "Maksym3"},

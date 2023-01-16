@@ -30,6 +30,7 @@ export function register(config?: Config) {
     // The URL constructor is available in all browsers that support SW.
 
     const publicUrl = new URL(
+        // @ts-ignore
       process.env.PUBLIC_URL,
       window.location.href
     );
