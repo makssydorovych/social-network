@@ -4,25 +4,19 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {Routes, Route} from "react-router-dom";
 import React from "react";
-import { ReduxStoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-type PropsType = {
-  store: ReduxStoreType
-}
 
-const App : React.FC<PropsType> = (props) => {
-    const state = props.store.getState();
+
+const App  = () => {
+
     return (
         <div className='app-wrapper'>
             <Header/>
-            <Navbar friends={state.sidebar.friends}/>
+            <Navbar />
             <Routes>
 
-                <Route path='/profile' element={<Profile store={props.store}
-
-
-                />}/>
+                <Route path='/profile' element={<Profile />}/>
                 <Route path='/dialogs' element={<DialogsContainer />} />
 
 

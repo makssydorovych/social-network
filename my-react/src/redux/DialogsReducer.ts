@@ -1,4 +1,12 @@
-
+import {ActionsTypes} from "./store";
+type MessageType = {
+    id: number
+    message: string
+}
+type DialogType = {
+    id: number
+    name: string
+}
 const initialState = {
         messages: [
             {id: 1, message: "Hello WORLD!!!!!"},
@@ -6,28 +14,29 @@ const initialState = {
             {id: 3, message: "hellodxxsxs"},
             {id: 4, message: "lorem ispum dolor"},
 
-        ],
+        ] as Array<MessageType>,
     dialogs: [
             {id: 1, name: "Maksym"},
             {id: 2, name: "Maksym2"},
             {id: 3, name: "Maksym3"},
             {id: 4, name: "elf"},
 
-        ],
-        newPostBody: ""
+        ] as Array<DialogType>,
+        newMessageBody: ""
 
 
 }
- export const dialogsReducer = (state = initialState, action: any) =>{
+export type InitialStateType = typeof initialState
+ export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType  =>{
      const copyState = {
          ...state
      }
     switch (action.type) {
-        case 'UPDATE_NEW_MESSAGE_BODY': copyState.newPostBody = action.body;
+        case 'UPDATE_NEW_MESSAGE_BODY': copyState.newMessageBody = action.body;
         return copyState;
-        case 'SEND_MESSAGE' : let body = copyState.newPostBody;
+        case 'SEND_MESSAGE' : let body = copyState.newMessageBody;
             copyState.messages.push({id:6, message: body});
-            copyState.newPostBody = "";
+            copyState.newMessageBody = "";
             return copyState
         default: return state
     }

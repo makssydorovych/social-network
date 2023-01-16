@@ -1,6 +1,9 @@
-import {ActionsTypes, PostType} from "./store";
-import posts from "../components/Profile/MyPosts/Post/Posts";
-
+import {ActionsTypes} from "./store";
+type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
 const initialState = {
     posts: [
         {id: 1, message: "Hello", likesCount: 12},
@@ -8,11 +11,11 @@ const initialState = {
         {id: 3, message: "hellodxxsasasaxs", likesCount: 14},
         {id: 4, message: "lorem ispum dolor", likesCount: 1},
 
-    ],
+    ] as Array<PostType>,
     newPostText: ""
 };
-
-export const profileReducer = (state = initialState, action: ActionsTypes) => {
+export type ProfileInitialStateType = typeof initialState
+export const profileReducer = (state:ProfileInitialStateType = initialState, action: ActionsTypes):ProfileInitialStateType => {
     const copyState = {
         ...state
     }
