@@ -1,4 +1,5 @@
 import {ActionsTypes, PostType} from "./store";
+import posts from "../components/Profile/MyPosts/Post/Posts";
 
 const initialState = {
     posts: [
@@ -8,10 +9,13 @@ const initialState = {
         {id: 4, message: "lorem ispum dolor", likesCount: 1},
 
     ],
-    newPostText: "Post Text..."
+    newPostText: ""
 };
 
-export const profileReducer = (state= initialState, action: ActionsTypes) => {
+export const profileReducer = (state = initialState, action: ActionsTypes) => {
+    const copyState = {
+        ...state
+    }
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
@@ -19,13 +23,16 @@ export const profileReducer = (state= initialState, action: ActionsTypes) => {
                 message: state.newPostText,
                 likesCount: 0
             };
-            state.posts.push(newPost);
-            state.newPostText = "";
-            return state
+            copyState.posts.push(newPost);
+            copyState.newPostText = "";
+            return copyState
+
         case 'UPDATE-NEW-POST-TEXT' :
-            state.newPostText = action.newText;
+
+            copyState.newPostText = action.newText;
+            return copyState
+        default:
             return state
-        default: return state
 
     }
 }

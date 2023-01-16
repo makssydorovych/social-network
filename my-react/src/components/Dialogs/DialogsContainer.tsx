@@ -10,8 +10,9 @@ import {
 	updateNewMessageBodyAC
 } from "../../redux/DialogsReducer";
 import {ChangeEvent} from "react";
-import {ReduxStoreType} from "../../redux/redux-store";
+import {AppRootStateType, ReduxStoreType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
+import {useSelector} from "react-redux";
 
 type PropsType = {
 	store: ReduxStoreType
@@ -19,8 +20,8 @@ type PropsType = {
 
 const DialogsContainer = (props: PropsType) => {
 	let state = props.store.getState()
-
-	let onSendMessageClick = () =>{
+	const NewBody = useSelector<AppRootStateType>(state => state.dialogsPage.newPostBody)
+	const onSendMessageClick = () =>{
 	props.store.dispatch(SendMessageAC())
 		props.store.dispatch(updateNewMessageBodyAC(""))
 	}
@@ -28,7 +29,7 @@ const DialogsContainer = (props: PropsType) => {
 
 		props.store.dispatch(updateNewMessageBodyAC(body))
 	}
-	return <Dialogs dialogPage={state.dialogsPage} updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick}/>
+	return <Dialogs dialogPage={state.dialogsPage} updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} newPostBody={NewBody as string}/>
 
 };
 export default DialogsContainer;

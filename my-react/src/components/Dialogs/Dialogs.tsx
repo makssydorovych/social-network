@@ -11,6 +11,7 @@ type PropsType = {
 	dialogPage: DialogPageType
 	updateNewMessageBody: (body: string) => void
 	sendMessage: () => void
+	newPostBody: string
 }
 
 const Dialogs = (props: PropsType) => {
@@ -20,8 +21,7 @@ const Dialogs = (props: PropsType) => {
 	let newMessageBody = state.newPostBody;
 	let onSendMessageClick = () =>{
 		props.sendMessage();
-		// props.dispatch(SendMessageAC())
-		// props.dispatch(updateNewMessageBodyAC(""))
+		props.updateNewMessageBody("")
 	}
 	let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) =>{
 		let body = e.currentTarget.value;

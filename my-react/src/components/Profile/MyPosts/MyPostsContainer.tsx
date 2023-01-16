@@ -1,9 +1,9 @@
-
 import React from 'react';
 import {ActionsTypes, PostType} from "../../../redux/store";
 import {changeNewPostTextAC, addPostAC} from "../../../redux/ProfileReducer";
 import MyPosts from "./MyPosts";
-import {ReduxStoreType} from "../../../redux/redux-store";
+import {AppRootStateType, ReduxStoreType} from "../../../redux/redux-store";
+import {useDispatch, useSelector} from "react-redux";
 
 
 type PropsType = {
@@ -11,19 +11,23 @@ type PropsType = {
 }
 
 const MyPostsContainer = (props: PropsType) => {
-let state = props.store.getState()
+    const state = props.store.getState()
+    const newText = useSelector<AppRootStateType>(state => (state.profilePage.newPostText))
+
+    const dispatch = useDispatch()
+
     let addPost = () => {
-        props.store.dispatch(addPostAC())
-        props.store.dispatch(changeNewPostTextAC(""))
+        dispatch(addPostAC())
+        dispatch(changeNewPostTextAC(""))
 
     };
     let onPostChange = (newText: string) => {
-
-        props.store.dispatch(changeNewPostTextAC(newText))
+        dispatch(changeNewPostTextAC(newText))
     }
 
     return (
-        <MyPosts posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} updateNewPostText={onPostChange} addPost={addPost}/>
+        <MyPosts posts={state.profilePage.posts} newPostText={newText as string}
+                 updateNewPostText={onPostChange} addPost={addPost}/>
     );
 };
 export default MyPostsContainer;
