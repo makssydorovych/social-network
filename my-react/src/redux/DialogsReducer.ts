@@ -1,4 +1,5 @@
-import {ActionsTypes} from "./store";
+
+export type ActionsTypes = SendMessageActionType | ChangeNewPostTextActionType ;
 type MessageType = {
     id: number
     message: string
@@ -26,8 +27,8 @@ const initialState = {
 
 
 }
-export type InitialStateType = typeof initialState
- export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType  =>{
+export type DialogsInitialStateType = typeof initialState
+ export const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionsTypes): DialogsInitialStateType  =>{
      let copyState = {
          ...state
      }
@@ -43,7 +44,7 @@ export type InitialStateType = typeof initialState
 
 
 }
- export const SendMessageAC = () => ({type: 'SEND_MESSAGE'} as const)
+ export const SendMessageAC = (body: string) => ({type: 'SEND_MESSAGE',body: body} as const)
  export const updateNewMessageBodyAC = (body: string) =>
      ({type: 'UPDATE_NEW_MESSAGE_BODY', body: body} as const)
 export  type SendMessageActionType = ReturnType<typeof SendMessageAC>

@@ -1,5 +1,7 @@
-import {ActionsTypes} from "./store";
-type PostType = {
+
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType ;
+export type PostType = {
     id: number
     message: string
     likesCount: number

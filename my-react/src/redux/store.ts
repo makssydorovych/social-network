@@ -1,9 +1,8 @@
 import {
     AddPostActionType,
     ChangeNewTextActionType,
-    profileReducer
 } from "./ProfileReducer";
-import {ChangeNewPostTextActionType, dialogsReducer, SendMessageActionType} from "./DialogsReducer";
+import {ChangeNewPostTextActionType, SendMessageActionType} from "./DialogsReducer";
 
 import {FollowActionType, SetUsersActionType, UnfollowActionType} from "./UsersReducer";
 
@@ -32,7 +31,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newPostBody: string
+    newMessageBody: string
 
 }
 export type sidebarType = {
@@ -50,7 +49,7 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
     _onChange: () => void
-    dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
 }
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType |
     SendMessageActionType | ChangeNewPostTextActionType | FollowActionType | UnfollowActionType |
@@ -112,12 +111,12 @@ let store: StoreType = {
     subscribe(observer) {
         this._onChange = observer;
     },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
-        this._onChange();
-
-    }
+    // dispatch(action) {
+    //     this._state.profilePage = profileReducer(this._state.profilePage, action)
+    //     this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
+    //     this._onChange();
+    //
+    // }
 
 
 }

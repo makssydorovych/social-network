@@ -4,12 +4,12 @@ import s from "./users.module.css";
 import {UserType} from "../../redux/UsersReducer";
 
 const Users = (props: UsersPropsType) => {
-    if(props.users.length === 0) {
+    if(props.usersPage.users.length === 0) {
         props.setUsers(
             [
                 {
                     id: 1,
-                    photoUrl: "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg",
+                    photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
                     followed: true,
                     fullName: "Hello",
                     status: "status",
@@ -17,7 +17,7 @@ const Users = (props: UsersPropsType) => {
                 },
                 {
                     id: 2,
-                    photoUrl: "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg",
+                    photoUrl: "hhttps://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
                     followed: true,
                     fullName: "Hello",
                     status: "status",
@@ -25,7 +25,7 @@ const Users = (props: UsersPropsType) => {
                 },
                 {
                     id: 3,
-                    photoUrl: "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg",
+                    photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
                     followed: false,
                     fullName: "Hello",
                     status: "status",
@@ -33,7 +33,7 @@ const Users = (props: UsersPropsType) => {
                 },
                 {
                     id: 4,
-                    photoUrl: "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg",
+                    photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
                     followed: false,
                     fullName: "Hello",
                     status: "status",
@@ -47,7 +47,7 @@ const Users = (props: UsersPropsType) => {
     return (
         <div>
             {
-                props.users.map(u => <div key={u.id}>
+                props.usersPage.users.map(u => <div key={u.id}>
                     <span>
                         <div>
                             <img src={u.photoUrl} className={s.userPhoto}/>
