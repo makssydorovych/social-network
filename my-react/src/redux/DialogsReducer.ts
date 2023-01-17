@@ -28,7 +28,7 @@ const initialState = {
 }
 export type InitialStateType = typeof initialState
  export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType  =>{
-     const copyState = {
+     let copyState = {
          ...state
      }
     switch (action.type) {

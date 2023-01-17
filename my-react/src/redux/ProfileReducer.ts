@@ -16,7 +16,7 @@ const initialState = {
 };
 export type ProfileInitialStateType = typeof initialState
 export const profileReducer = (state:ProfileInitialStateType = initialState, action: ActionsTypes):ProfileInitialStateType => {
-    const copyState = {
+    let copyState = {
         ...state
     }
     switch (action.type) {

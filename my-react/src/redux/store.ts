@@ -4,7 +4,8 @@ import {
     profileReducer
 } from "./ProfileReducer";
 import {ChangeNewPostTextActionType, dialogsReducer, SendMessageActionType} from "./DialogsReducer";
-import {sidebarReducer} from "./SidebarReducer";
+
+import {FollowActionType, SetUsersActionType, UnfollowActionType} from "./UsersReducer";
 
 export type MessageType = {
     id: number
@@ -51,7 +52,9 @@ export type StoreType = {
     _onChange: () => void
     dispatch: (action: ActionsTypes) => void
 }
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | SendMessageActionType | ChangeNewPostTextActionType;
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType |
+    SendMessageActionType | ChangeNewPostTextActionType | FollowActionType | UnfollowActionType |
+    SetUsersActionType;
 
 
 
@@ -83,7 +86,7 @@ let store: StoreType = {
                 {id: 4, name: "elf"},
 
             ],
-            newPostBody: ""
+            newMessageBody: ""
 
         },
         sidebar: {
@@ -112,7 +115,6 @@ let store: StoreType = {
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._onChange();
 
     }
