@@ -1,8 +1,12 @@
 type ActionsTypes = FollowActionType | UnfollowActionType |
     SetUsersActionType;
+
 export type UserType = {
-    id: number
-    photoUrl: string,
+    id: number,
+    photo : {
+        small: any,
+        large:any
+    };
     followed: boolean
     fullName: string
     status: string
@@ -12,7 +16,7 @@ const initialState = {
     users: [
         {
             id: 1,
-            photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
+            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
             followed: true,
             fullName: "Hello",
             status: "status",
@@ -20,7 +24,7 @@ const initialState = {
         },
         {
             id: 2,
-            photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
+            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
             followed: true,
             fullName: "Hello",
             status: "status",
@@ -28,7 +32,7 @@ const initialState = {
         },
         {
             id: 3,
-            photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
+            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
             followed: false,
             fullName: "Hello",
             status: "status",
@@ -36,7 +40,7 @@ const initialState = {
         },
         {
             id: 4,
-            photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png",
+            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
             followed: false,
             fullName: "Hello",
             status: "status",
