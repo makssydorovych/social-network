@@ -3,26 +3,21 @@ import {UsersPropsType} from "./UsersContainer";
 import s from "./users.module.css";
 import {UserType} from "../../redux/UsersReducer";
 import  axios from 'axios';
-import {render} from "@testing-library/react";
-// import {render} from "react-dom";
+
 
 class Users extends React.Component<any, any>{
-    getUsers = () => {
-        if(this.props.usersPage.users.length === 0) {
-
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(responce  =>{
-                this.props.setUsers(responce.data.items)
-
-            });
-
-        }
+    constructor(props: any) {
+        super(props);
     }
-
+    componentDidMount() {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(responce  =>{
+            this.props.setUsers(responce.data.items)
+        });
+    }
 
     render() {
         return (
 <div>
-<button onClick={this.getUsers}>Get Users</button>
 {
     this.props.usersPage.users.map(u => <div key={u.id}>
                     <span>
