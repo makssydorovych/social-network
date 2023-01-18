@@ -17,7 +17,7 @@ const App  = () => {
             <Navbar />
             <Routes>
 
-                <Route path='/profile' element={<Profile />}/>
+                <Route path='/profile:/:userId?' element={<Profile />}/>
                 <Route path='/dialogs' element={<DialogsContainer />} />
                 <Route path='/users' element={<UsersContainer />}/>
 
