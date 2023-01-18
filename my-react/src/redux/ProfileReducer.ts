@@ -1,6 +1,6 @@
 
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType ;
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | SetUserProfileActionType;
 export type PostType = {
     id: number
     message: string
@@ -14,7 +14,8 @@ const initialState = {
         {id: 4, message: "lorem ispum dolor", likesCount: 1},
 
     ] as Array<PostType>,
-    newPostText: ""
+    newPostText: "",
+    profile: null
 };
 export type ProfileInitialStateType = typeof initialState
 export const profileReducer = (state:ProfileInitialStateType = initialState, action: ActionsTypes):ProfileInitialStateType => {
@@ -36,6 +37,8 @@ export const profileReducer = (state:ProfileInitialStateType = initialState, act
 
             copyState.newPostText = action.newText;
             return copyState
+        case 'SET-USER-PROFILE':
+            return {...state, profile: action.profile}
         default:
             return state
 
@@ -48,6 +51,8 @@ export const changeNewPostTextAC = (text: string) => {
         newText: text
     } as const
 }
+export const setUserProfile = (profile:any) => ({type: 'SET-USER-PROFILE', profile}) as const
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type ChangeNewTextActionType = ReturnType<typeof changeNewPostTextAC>
+export type SetUserProfileActionType = ReturnType<typeof setUserProfile>

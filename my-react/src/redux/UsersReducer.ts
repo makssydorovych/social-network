@@ -5,7 +5,7 @@ export type UserType = {
     id: number,
     photo : {
         small: any,
-        large:any
+        large: any
     };
     followed: boolean
     fullName: string
@@ -95,39 +95,39 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
 
     }
 }
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: 'FOLLOW', userId
     } as const
 }
-export const unfollowAC = (userId: number) => {
+export const unfollow = (userId: number) => {
     return {
         type: 'UNFOLLOW', userId
     } as const
 }
-export const setUsersAC = (users: any) => {
+export const setUsers = (users: any) => {
     return {
         type: 'SET-USERS', users
     } as const
 }
-export const setCurrentPageAC = (currentPage: any) => {
+export const setCurrentPage = (currentPage: any) => {
     return {
         type: 'SET-CURRENT-PAGE', currentPage
     } as const
 }
-export const setUsersTotalCountAC = (totalCount: any) => {
+export const setUsersTotalCount = (totalCount: any) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT', totalCount
     } as const
 }
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING', isFetching
     } as const
 }
-export type FollowActionType = ReturnType<typeof followAC>
-export type UnfollowActionType = ReturnType<typeof unfollowAC>
-export type SetUsersActionType = ReturnType<typeof setUsersAC>
-export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-export type SetUsersTotalCountActionType = ReturnType<typeof setUsersTotalCountAC>
-export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingAC>
+export type FollowActionType = ReturnType<typeof follow>
+export type UnfollowActionType = ReturnType<typeof unfollow>
+export type SetUsersActionType = ReturnType<typeof setUsers>
+export type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
+export type SetUsersTotalCountActionType = ReturnType<typeof setUsersTotalCount>
+export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>

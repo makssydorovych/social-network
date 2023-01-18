@@ -1,20 +1,17 @@
 import React from "react";
 import s from "./Profile.module.css";
-import MyPosts from "./MyPosts/MyPosts";
-import ProfileInfo from "../ProfileInfo/ProfileInfo";
-import {ActionsTypes, ProfilePageType} from "../../redux/store";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ReduxStoreType} from "../../redux/redux-store";
 
 
-const Profile = () => {
+
+const Profile = (props: any) => {
 
     return (
         <main className={s.content}>
-            <ProfileInfo/>
+            <ProfileInfo props={props.profile}/>
             <MyPostsContainer
-                // store={props.store}
-                // posts={props.profilePage.posts}
+
 
             />
         </main>
