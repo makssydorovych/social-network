@@ -1,3 +1,6 @@
 .userPhoto{
     width: 50px;
 }
+.currentPage{
+    font-weight: bold;
+}
