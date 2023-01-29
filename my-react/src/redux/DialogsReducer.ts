@@ -23,7 +23,8 @@ const initialState = {
             {id: 4, name: "elf"},
 
         ] as Array<DialogType>,
-        newMessageBody: ""
+    newMessageBody: ""
+
 
 
 }
@@ -44,8 +45,7 @@ export type DialogsInitialStateType = typeof initialState
 
 
 }
- export const SendMessageAC = (body: string) => ({type: 'SEND_MESSAGE',body: body} as const)
- export const updateNewMessageBodyAC = (body: string) =>
-     ({type: 'UPDATE_NEW_MESSAGE_BODY', body: body} as const)
+ export const SendMessageAC = (newMessageBody: string) => ({type: 'SEND_MESSAGE', newMessageBody} as const)
+ export const updateNewMessageBodyAC = (body: string) => ({type: 'UPDATE_NEW_MESSAGE_BODY', body: body} as const)
 export  type SendMessageActionType = ReturnType<typeof SendMessageAC>
 export  type ChangeNewPostTextActionType = ReturnType<typeof updateNewMessageBodyAC>
