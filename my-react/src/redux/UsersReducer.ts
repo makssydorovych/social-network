@@ -1,62 +1,21 @@
 type ActionsTypes = FollowActionType | UnfollowActionType | SetCurrentPageActionType |
     SetUsersActionType | SetUsersTotalCountActionType | ToggleIsFetchingActionType;
 
-export type UserType = {
-    id: number,
-    photo : {
-        small: any,
-        large: any
-    };
-    followed: boolean
-    fullName: string
-    status: string
-    location: { city: string, country: string }
+type PhotoType = {
+    small: string,
+    large: string
 }
-const initialState = {
-    users: [
-        {
-            id: 1,
-            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
-            followed: true,
-            fullName: "Hello",
-            status: "status",
-            location: {city: "city", country: "country"}
-        },
-        {
-            id: 2,
-            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
-            followed: true,
-            fullName: "Hello",
-            status: "status",
-            location: {city: "city", country: "country"}
-        },
-        {
-            id: 3,
-            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
-            followed: false,
-            fullName: "Hello",
-            status: "status",
-            location: {city: "city", country: "country"}
-        },
-        {
-            id: 4,
-            photo: {small:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/1024px-Smiley.svg.png"},
-            followed: false,
-            fullName: "Hello",
-            status: "status",
-            location: {city: "city", country: "country"}
-        },
+export type UserType = {
+    items:[ id: number,
+        name: string,
+        status: string,
+        photos: PhotoType,
+        followed: boolean
+    ]
 
+}
+const initialState: Array<UserType> = []
 
-
-    ] as Array<UserType>,
-    pageSize: 5,
-    totalUsersCount: 0,
-    currentPage: 1,
-    totalCount: 0,
-    isFetching: false
-
-};
 export type UsersInitialStateType = typeof initialState
 export const usersReducer = (state: UsersInitialStateType = initialState, action: ActionsTypes): UsersInitialStateType => {
 
