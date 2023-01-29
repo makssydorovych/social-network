@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./users.module.css";
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api/API";
 
 const Users = (props:any) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -27,10 +28,24 @@ return (
                                 </NavLink>
                         </div>
                         <div>
-                            {u.followed ? <button onClick={() => {
-                                props.unfollow(u.id)
-                            }}>Unfollow</button> : <button onClick={() => {
-                                props.follow(u.id)
+                            {u.followed ? <button disabled={props.followingInProgress.some(id=>id ===u.id)} onClick={() => {
+                                props.toggleIsFollowingProgress(true, u.id)
+                                usersAPI.followUsers(props.follow, u.id)
+                                    .then(data=>{
+                                        if(data.resultCode === 0){
+                                            props.unfollow(u.id)
+                                        }props.toggleIsFollowingProgress(false, u.id)
+                                    })
+
+                            }}>Unfollow</button> : <button disabled={props.followingInProgress.some(id=>id ===u.id)} onClick={() => {
+
+                                props.toggleIsFollowingProgress(false, u.id)
+                                usersAPI.followUsers(props.follow, u.id)
+                                    .then(data=>{
+                                        if(data.resultCode === 0){
+                                            props.unfollow(u.id)
+                                        }props.toggleIsFollowingProgress(true, u.id)
+                                    })
                             }}>Follow</button>}
 
                         </div>

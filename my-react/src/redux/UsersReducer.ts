@@ -1,15 +1,21 @@
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'
+
 type ActionsTypes = FollowActionType | UnfollowActionType | SetCurrentPageActionType |
-    SetUsersActionType | SetUsersTotalCountActionType | ToggleIsFetchingActionType;
+    SetUsersActionType | SetUsersTotalCountActionType | ToggleIsFetchingActionType | ToggleIsFollowingProgressType;
 
 type UserType = {
     id: number,
     name: string,
     status: string
-    
+
 }
 const initialState = {
     users: [],
-
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: true,
+    followingInProgress: []
 }
 
 export type UsersInitialStateType = typeof initialState
@@ -45,11 +51,18 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
             return {...state, totalUsersCount: action.totalCount}
         case 'TOGGLE-IS-FETCHING' :
             return {...state, isFetching: action.isFetching}
+        case TOGGLE_IS_FOLLOWING_PROGRESS :
+            return {...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                   : state.followingInProgress.filter(id => id != action.userId)
+            }
         default:
             return state
 
     }
 }
+//Action Creators
 export const follow = (userId: number) => {
     return {
         type: 'FOLLOW', userId
@@ -80,9 +93,16 @@ export const toggleIsFetching = (isFetching: boolean) => {
         type: 'TOGGLE-IS-FETCHING', isFetching
     } as const
 }
+export const followingProgress = (isFetching: boolean, userId: number) => {
+    return {
+        type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId
+    } as const
+}
+//TYPES AC
 export type FollowActionType = ReturnType<typeof follow>
 export type UnfollowActionType = ReturnType<typeof unfollow>
 export type SetUsersActionType = ReturnType<typeof setUsers>
 export type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
 export type SetUsersTotalCountActionType = ReturnType<typeof setUsersTotalCount>
 export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
+export type ToggleIsFollowingProgressType = ReturnType<typeof followingProgress>

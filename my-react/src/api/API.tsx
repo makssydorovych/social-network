@@ -13,6 +13,12 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    followUsers(follow: boolean, id: number) {
+       return instance.delete(`follow/${id}`)
+           .then(response => {
+               return response.data
+           })
     }
 }
 
