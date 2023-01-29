@@ -1,20 +1,16 @@
 type ActionsTypes = FollowActionType | UnfollowActionType | SetCurrentPageActionType |
     SetUsersActionType | SetUsersTotalCountActionType | ToggleIsFetchingActionType;
 
-type PhotoType = {
-    small: string,
-    large: string
+type UserType = {
+    id: number,
+    name: string,
+    status: string
+    
 }
-export type UserType = {
-    items:[ id: number,
-        name: string,
-        status: string,
-        photos: PhotoType,
-        followed: boolean
-    ]
+const initialState = {
+    users: [],
 
 }
-const initialState: Array<UserType> = []
 
 export type UsersInitialStateType = typeof initialState
 export const usersReducer = (state: UsersInitialStateType = initialState, action: ActionsTypes): UsersInitialStateType => {
