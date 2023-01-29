@@ -2,6 +2,7 @@ import React from "react";
 import s from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api/API";
+import {followingProgress} from "../../redux/UsersReducer";
 
 const Users = (props:any) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -28,7 +29,7 @@ return (
                                 </NavLink>
                         </div>
                         <div>
-                            {u.followed ? <button disabled={props.followingInProgress.some(id=>id ===u.id)} onClick={() => {
+                            {u.followed ? <button disabled={props.followingProgress.some(id=>id ===u.id)} onClick={() => {
                                 props.toggleIsFollowingProgress(true, u.id)
                                 usersAPI.followUsers(props.follow, u.id)
                                     .then(data=>{
@@ -37,7 +38,7 @@ return (
                                         }props.toggleIsFollowingProgress(false, u.id)
                                     })
 
-                            }}>Unfollow</button> : <button disabled={props.followingInProgress.some(id=>id ===u.id)} onClick={() => {
+                            }}>Unfollow</button> : <button disabled={props.followingProgress.some(id=>id ===u.id)} onClick={() => {
 
                                 props.toggleIsFollowingProgress(false, u.id)
                                 usersAPI.followUsers(props.follow, u.id)
