@@ -1,36 +1,12 @@
+import {PhotosType, PostType, ProfileType} from "./types";
+
 const SET_STATUS = 'SET-STATUS'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const DELETE_POST = 'DELETE-POST'
 const SAVE_PHOTO_SUCESS = 'SAVE-PHOTO-SUCESS'
 
 
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-type ContactType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
-type PhotosType = {
-    small: string | null
-    large: string | null
-}
-type ProfileType = {
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactType
-    photos: PhotosType
-}
+
 const initialState = {
     posts: [
         {id: 1, message: "Hello", likesCount: 12},
