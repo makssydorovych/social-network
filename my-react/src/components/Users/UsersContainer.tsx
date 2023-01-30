@@ -14,12 +14,10 @@ import {usersAPI} from "../../api/API";
 
 
 class UsersContainer extends React.Component<{ any }, { any }> {
-    constructor(props: { any }) {
-        super(props);
-    }
 
     componentDidMount() {
-        this.props.getUser(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props
+        this.props.getUser(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber: any) => {
