@@ -4,14 +4,14 @@ import Users from "./Users";
 import Preloader from "../../common/preloader/Preloader";
 import {UserType} from "../../redux/types";
 import {AppRootStateType} from "../../redux/redux-store";
-import {follow, setCurrentPage, unfollow, UsersInitialStateType} from "../../redux/UsersReducer";
+import {follow, requestUsers, unfollow} from "../../redux/UsersReducer";
 import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsers
+
 } from "../../redux/users-selector";
 import {compose} from "@reduxjs/toolkit";
 
