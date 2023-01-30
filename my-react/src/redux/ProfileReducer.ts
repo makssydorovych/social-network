@@ -1,4 +1,6 @@
 import {PhotosType, PostType, ProfileType} from "./types";
+import {usersAPI} from "../api/API";
+import {ThunkApp} from "./redux-store";
 
 const SET_STATUS = 'SET-STATUS'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -55,12 +57,10 @@ export const profileReducer = (state: ProfileInitialStateType = initialState, ac
     }
 }
 export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const)
-
 export const setUserProfileAC = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 export const deletePostAC = (postId: number) => ({type: DELETE_POST, postId} as const)
 export const savePhotoSuccessAC = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCESS, photos} as const)
-
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
@@ -76,7 +76,6 @@ export type ActionsTypes =
     | ChangeNewTextActionType
     | SavePhotoSuccessAT;
 
-
 export const changeNewPostTextAC = (text: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
@@ -84,3 +83,8 @@ export const changeNewPostTextAC = (text: string) => {
     } as const
 }
 export type ChangeNewTextActionType = ReturnType<typeof changeNewPostTextAC>
+
+export const getUserProfile = (userId:number):ThunkApp => async dispatch =>{
+    const data = await usersAPI.getProfile(userId)
+    dispatch(setUserProfileAC(data.data))
+}
