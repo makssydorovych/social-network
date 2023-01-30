@@ -19,7 +19,7 @@ class UsersContainer extends React.Component<{ any }, { any }> {
     }
 
     componentDidMount() {
-        this.props.getUserTC();
+        this.props.getUser(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber: any) => {
@@ -90,8 +90,8 @@ export default connect(mapStateToprops, {
         setCurrentPage,
         setUsersTotalCount,
         toggleIsFetching,
-    followingProgress,
-        getUsersTC
+        followingProgress,
+       getUsers: getUsersTC
     }
 )(UsersContainer);
 
