@@ -4,11 +4,12 @@ import {
 } from "../../redux/DialogsReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
+import {AppRootStateType} from "../../redux/redux-store";
 
 type mapStateToPropsType ={
     dialogPage: DialogsInitialStateType
+    isAuth: boolean
 }
 type mapDispatchToPropsType = {
     sendMessage: (body: string) => void
@@ -17,9 +18,10 @@ type mapDispatchToPropsType = {
 
 export type DialogsPropsType = mapStateToPropsType & mapDispatchToPropsType
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     return {
-        dialogPage: state.dialogsPage
+        dialogPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
