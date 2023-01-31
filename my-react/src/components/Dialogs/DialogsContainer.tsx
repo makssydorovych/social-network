@@ -1,7 +1,7 @@
 import {
     DialogsInitialStateType, SendMessageAC,
     updateNewMessageBodyAC
-} from "../../redux/DialogsReducer";
+} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";

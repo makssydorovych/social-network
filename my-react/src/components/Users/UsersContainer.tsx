@@ -4,7 +4,7 @@ import Users from "./Users";
 import Preloader from "../../common/preloader/Preloader";
 import {UserType} from "../../redux/types";
 import {AppRootStateType} from "../../redux/redux-store";
-import {follow, requestUsers, unfollow} from "../../redux/UsersReducer";
+import {follow, requestUsers, unfollow} from "../../redux/users-reducer";
 import {
     getCurrentPage,
     getFollowingInProgress,
