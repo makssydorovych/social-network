@@ -1,17 +1,18 @@
-import {instance} from "./API";
-import {profileAPI} from "./ProfileAPI";
+import {instance, ResponseType} from "./API";
+
+
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<ResponseType>(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data
             })
     },
     unfollow(follow: boolean, userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete<ResponseType>(`follow/${userId}`).then(res=>res.data)
     },
     follow(follow: boolean, userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post(`follow/${userId}`).then(res=>res.data)
     }
 }

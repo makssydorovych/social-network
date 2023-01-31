@@ -1,12 +1,12 @@
 import {PhotosType, PostType, ProfileType} from "./types";
 import {ThunkApp} from "./redux-store";
-import {usersAPI} from "../api/UsersAPI";
+import {profileAPI} from "../api/ProfileAPI";
+import {stopSubmit} from "redux-form";
 
 const SET_STATUS = 'SET-STATUS'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const DELETE_POST = 'DELETE-POST'
 const SAVE_PHOTO_SUCESS = 'SAVE-PHOTO-SUCESS'
-
 
 
 const initialState = {
@@ -56,17 +56,17 @@ export const profileReducer = (state: ProfileInitialStateType = initialState, ac
 
     }
 }
-export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const)
-export const setUserProfileAC = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile} as const)
-export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
-export const deletePostAC = (postId: number) => ({type: DELETE_POST, postId} as const)
-export const savePhotoSuccessAC = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCESS, photos} as const)
+export const addPost = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
+export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const)
+export const savePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCESS, photos} as const)
 
-export type AddPostActionType = ReturnType<typeof addPostAC>
-export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
-export type SetStatusAT = ReturnType<typeof setStatusAC>
-export type DeletePostAT = ReturnType<typeof deletePostAC>
-export type SavePhotoSuccessAT = ReturnType<typeof savePhotoSuccessAC>
+export type AddPostActionType = ReturnType<typeof addPost>
+export type SetUserProfileActionType = ReturnType<typeof setUserProfile>
+export type SetStatusAT = ReturnType<typeof setStatus>
+export type DeletePostAT = ReturnType<typeof deletePost>
+export type SavePhotoSuccessAT = ReturnType<typeof savePhotoSuccess>
 
 export type ActionsTypes =
     AddPostActionType
@@ -76,15 +76,47 @@ export type ActionsTypes =
     | ChangeNewTextActionType
     | SavePhotoSuccessAT;
 
-export const changeNewPostTextAC = (text: string) => {
+export const changeNewPostText = (text: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: text
     } as const
 }
-export type ChangeNewTextActionType = ReturnType<typeof changeNewPostTextAC>
+export type ChangeNewTextActionType = ReturnType<typeof changeNewPostText>
 
-export const getUserProfile = (userId:number):ThunkApp => async dispatch =>{
-    const data = await usersAPI.getProfile(userId)
-    dispatch(setUserProfileAC(data.data))
+export const getUserProfile = (userId: number): ThunkApp => async dispatch => {
+    const data = await profileAPI.getProfile(userId)
+    dispatch(setUserProfile(data))
+}
+export const getStatus = (userId: number): ThunkApp => async (dispatch: any) => {
+    const data = await profileAPI.getStatus(userId)
+    dispatch(setStatus(data))
+}
+export const updateStatus = (status: string): ThunkApp => async dispatch => {
+    try {
+        const data = await profileAPI.updateStatus(status)
+        if(data.resultCode ===0) {
+            dispatch(updateStatus(status))
+        }
+    } catch (error) {
+
+    }
+}
+export const savePhoto = (file: any): ThunkApp => async dispatch => {
+    const data = await profileAPI.savePhoto(file)
+    if (data.resultCode === 0) {
+        dispatch(savePhotoSuccess(data.data.photos))
+    }
+}
+
+
+export const saveProfile = (profile: ProfileType): ThunkApp => async (dispatch: any, getState: any) => {
+    const userId = getState().auth.userId
+    const response = await profileAPI.saveProfile(profile)
+    if (response.resultCode === 0) {
+        dispatch(getUserProfile(userId))
+    } else {
+        dispatch(stopSubmit("edit-profile", {error: response.messages[0]}))
+        return Promise.reject(response.messages[0])
+    }
 }

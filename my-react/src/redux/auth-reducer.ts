@@ -1,6 +1,7 @@
 import stopSubmit from "redux-form"
-import {authAPI, ResultCodeEnum, securityAPI} from "../api/API";
+import {ResultCodeEnum, securityAPI} from "../api/API";
 import {ThunkApp} from "./redux-store";
+import {authAPI} from "../api/AuthAPI";
 
 const SET_USER_DATA = 'SET-USER-DATA'
 const GET_CAPTCHA_URL_SUCCESS = 'GET-CAPTCHA-URL-SUCCESS'
