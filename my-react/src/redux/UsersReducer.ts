@@ -1,7 +1,7 @@
 import {UserType} from "./types";
-import {usersAPI} from "../api/API";
 import {ThunkApp} from "./redux-store";
 import { Dispatch} from "redux";
+import {usersAPI} from "../api/UsersAPI";
 
 
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'

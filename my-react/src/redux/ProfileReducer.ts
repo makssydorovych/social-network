@@ -1,6 +1,6 @@
 import {PhotosType, PostType, ProfileType} from "./types";
-import {usersAPI} from "../api/API";
 import {ThunkApp} from "./redux-store";
+import {usersAPI} from "../api/UsersAPI";
 
 const SET_STATUS = 'SET-STATUS'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
