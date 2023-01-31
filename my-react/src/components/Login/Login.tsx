@@ -6,7 +6,8 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input} from "../../common/FormControls/FormControl";
 import style from "../../common/FormControls/FormControl.module.css"
 import {required} from "../../utils/validator";
-import {Redirect} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 
 type LoginFormOwnType = {
     captchaUrl: string | null
@@ -51,7 +52,8 @@ const Login: React.FC<LoginPropsType & LoginDispatchPropsType> = (props) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) {
-        return <Redirect to={"/profile"}/>
+        const navigate = useNavigate()
+        return navigate("/profile")
     }
     return (
         <div>

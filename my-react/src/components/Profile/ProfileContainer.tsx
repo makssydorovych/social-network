@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {getUserProfile} from "../../redux/ProfileReducer";
 import {useNavigate, useParams} from 'react-router-dom';
 import {ProfileType} from "../../redux/types";
+import {AppRootStateType} from "../../redux/redux-store";
 
 type PathParamType = {
     userId: string
@@ -49,9 +50,11 @@ type MapDispatchPropsType = {
 type PropsType = MapStateToPropsType & MapDispatchPropsType
 
 
-const mapStateToProps = (state: MapStateToPropsType): MapStateToPropsType => ({
-    profile: state.profile,
-    isAuth: state.auth.isAuth
-})
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
+    return{
+        profile: state.profile,
+        isAuth: state.auth.isAuth
+    }
+}
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);

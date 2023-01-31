@@ -1,9 +1,10 @@
 import React from 'react';
-import {changeNewPostTextAC, addPostAC, ProfileInitialStateType, PostType} from "../../../redux/ProfileReducer";
+import {changeNewPostTextAC, addPostAC} from "../../../redux/ProfileReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import { AppStateType} from "../../../redux/redux-store";
+import { AppRootStateType} from "../../../redux/redux-store";
 import {Dispatch} from "redux"
+import {PostType} from "../../../redux/types";
 
 type mapStateToPropsType ={
     posts: Array<PostType>
@@ -16,7 +17,7 @@ type mapDispatchToPropsType = {
 
 export type MyPostsPropsType = mapStateToPropsType & mapDispatchToPropsType
 
-const mapStateToprops = (state: AppStateType): mapStateToPropsType => {
+const mapStateToprops = (state: AppRootStateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
