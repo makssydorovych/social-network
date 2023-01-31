@@ -3,6 +3,7 @@ import React, {ChangeEvent, FC, useState} from "react";
 import Preloader from "../../../common/preloader/Preloader";
 import {ContactType, ProfileType} from "../../../redux/types";
 import ProfileStatus from "./ProfileStatus";
+import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
 
 type ProfileInfoType = {
 	profile: ProfileType | null;
@@ -120,10 +121,10 @@ const ProfileData = ({ profile, setEditMode, isOwner }: ProfileDataType) => {
 		</>
 	);
 };
-type ContactType = {
+type ContactPropsType = {
 	contactTitle:string
 	contactValue: string
 }
-const Contact: React.FC<ContactType> =({contactTitle, contactValue})=>{
+const Contact: React.FC<ContactPropsType> =({contactTitle, contactValue})=>{
 	return<div><b>{contactTitle}</b>: {contactValue}</div>
 }

@@ -8,58 +8,81 @@ import {ProfileType} from "../../redux/types";
 import {AppRootStateType} from "../../redux/redux-store";
 import {compose} from "@reduxjs/toolkit";
 
-type PropsType = {
-    userId: string | null
-    getUserProfile: (userId: number)=>void
-    isAuth: boolean
-}
-
-export function withRouter(Children: any) {
-    return (props: any) => {
-        const match = {params: useParams()};
-        return <Children {...props} match={match}/>
+class ProfileContainer extends React.Component<ComponentWithRouterType> {
+    constructor(props: ComponentWithRouterType) {
+        super(props as ComponentWithRouterType);
     }
-}
-
-class ProfileContainer extends React.Component<PropsType> {
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
+    refreshProfile() {
+        let { userId } = this.props.params;
         if (!userId) {
-            userId = 2
+            userId = this.props.authorizedUserId
+                ? this.props.authorizedUserId?.toString()
+                : undefined;
         }
-        this.props.getUserProfile(userId);
-
+        if (userId) {
+            this.props.getUserProfile(+userId);
+            this.props.getStatus(+userId);
+        }
     }
-
+    componentDidMount() {
+        this.refreshProfile();
+    }
+    componentDidUpdate(
+        prevProps: ComponentWithRouterType,
+        prevState: ComponentWithRouterType
+    ) {
+        if (prevProps.params.userId !== this.props.params.userId) {
+            this.refreshProfile();
+        }
+    }
     render() {
-        const navigate = useNavigate()
-        if(!this.props.isAuth) return navigate("/login")
-        return (
-            <div className={s.content}>
-                <Profile {...this.props} profile={this.props.profile}/>
-            </div>
-        )
+        //другое условие, чтобы не вмешиваться в componentDidMount с history
+        if (!this.props.isAuth && !this.props.params.hasOwnProperty("userId")) {
+            return <Navigate to={"/login"} />;
+        }
+        return <Profile isOwner={!this.props.params.userId} {...this.props} />;
     }
 }
-
-type MapStateToPropsType = {
-    profile: ProfileType
-    getUserProfile: ()=> void
-    isAuth: boolean
-}
-type MapDispatchPropsType = {
-    setUserProfile: (profile:ProfileType) => void
-}
-type PropsType = MapStateToPropsType & MapDispatchPropsType
+const mstp = (state: AppRootStateType) => ({
+    profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth,
+    authorizedUserId: state.auth.userId,
+    status: state.profilePage.status,
+});
 
 
-const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
-    return{
-        profile: state.profile,
-        isAuth: state.auth.isAuth
+function withRouter(Component: ComponentType<ComponentWithRouterType>) {
+    function ComponentWithParams(props: ComponentWithParamsType) {
+        return <Component {...props} params={useParams()} />;
     }
+
+    return ComponentWithParams;
 }
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
+export default compose<React.ComponentType>(
+    connect(mstp, {
+        getUserProfile,
+        updateStatus,
+        getStatus,
+        savePhoto,
+        saveProfile,
+    }),
+    withRouter
+)(ProfileContainer);
 
-export default compose(connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent))
+//types
+
+type MapStateToPropsType = ReturnType<typeof mstp>;
+type MapDispatchToPropsType = {
+    getUserProfile: (userId: number) => void;
+    getStatus: (userId: number) => void;
+    updateStatus: (status: string) => void;
+    savePhoto: (file: File) => void;
+    saveProfile: (profile:  Omit<ProfileType, 'userId'| 'photos'> ) => Promise<any>;
+};
+
+export type ComponentWithParamsType = MapStateToPropsType &
+    MapDispatchToPropsType;
+export type ComponentWithRouterType = ComponentWithParamsType & {
+    params: Params;
+};
