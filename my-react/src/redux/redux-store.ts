@@ -6,6 +6,7 @@ import {sidebarReducer} from "./sidebar-reducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from 'redux';
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk"
+import appReducer from "./appReducer";
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    sidebar: sidebarReducer
+    sidebar: sidebarReducer,
+    app: appReducer
 
 
 })
