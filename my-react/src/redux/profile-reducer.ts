@@ -3,18 +3,12 @@ import {ThunkApp} from "./redux-store";
 import {profileAPI} from "../api/ProfileAPI";
 import {stopSubmit} from "redux-form";
 
-const SET_STATUS = 'SET-STATUS'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
-const DELETE_POST = 'DELETE-POST'
-const SAVE_PHOTO_SUCESS = 'SAVE-PHOTO-SUCESS'
-
-
 const initialState = {
     posts: [
         {id: 1, message: "Hello", likesCount: 12},
         {id: 2, message: "hello World", likesCount: 6},
-        {id: 3, message: "hellodxxsasasaxs", likesCount: 14},
-        {id: 4, message: "lorem ispum dolor", likesCount: 1},
+        {id: 3, message: "hello ", likesCount: 14},
+        {id: 4, message: "lorem  dolor", likesCount: 1},
 
     ] as Array<PostType>,
     newPostText: "",
@@ -24,7 +18,7 @@ const initialState = {
 export type ProfileInitialStateType = typeof initialState
 export const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionsTypes): ProfileInitialStateType => {
     switch (action.type) {
-        case 'ADD-POST':
+        case 'PROFILE/ADD-POST':
             const newPost: PostType = {
                 id: 5,
                 message: action.newPostText,
@@ -34,55 +28,42 @@ export const profileReducer = (state: ProfileInitialStateType = initialState, ac
                 ...state, posts: [...state.posts, newPost],
                 newPostText: ''
             }
-        case SET_STATUS :
+        case 'PROFILE/SET-STATUS' :
             return {
                 ...state,
                 status: action.status
             }
-        case SET_USER_PROFILE:
+        case 'PROFILE/SET-USER-PROFILE':
             return {...state, profile: action.profile}
-        case DELETE_POST:
+        case 'PROFILE/DELETE-POST':
             return {...state, posts: state.posts.filter(p => p.id != action.postId)}
-        case 'UPDATE-NEW-POST-TEXT' :
+        case 'PROFILE/UPDATE-NEW-POST-TEXT' :
             let copyState = {...state}
             copyState.newPostText = action.newText;
             return copyState
-        case SAVE_PHOTO_SUCESS:
+        case 'PROFILE/SAVE-PHOTO-SUCCESS':
             return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
-        case 'SET-USER-PROFILE':
-            return {...state, profile: action.profile}
         default:
             return state
 
     }
 }
-export const addPost = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const)
-export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile} as const)
-export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
-export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const)
-export const savePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCESS, photos} as const)
-
-export type AddPostActionType = ReturnType<typeof addPost>
-export type SetUserProfileActionType = ReturnType<typeof setUserProfile>
-export type SetStatusAT = ReturnType<typeof setStatus>
-export type DeletePostAT = ReturnType<typeof deletePost>
-export type SavePhotoSuccessAT = ReturnType<typeof savePhotoSuccess>
+export const addPost = (newPostText: string) => ({type: 'PROFILE/ADD-POST', newPostText} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: 'PROFILE/SET-USER-PROFILE', profile} as const)
+export const setStatus = (status: string) => ({type: 'PROFILE/SET-STATUS', status} as const)
+export const deletePost = (postId: number) => ({type: 'PROFILE/DELETE-POST', postId} as const)
+export const savePhotoSuccess = (photos: PhotosType) => ({type: 'PROFILE/SAVE-PHOTO-SUCCESS', photos} as const)
+export const changeNewPostText = (text: string) =>  ({type: 'PROFILE/UPDATE-NEW-POST-TEXT', newText: text} as const)
 
 export type ActionsTypes =
-    AddPostActionType
-    | SetUserProfileActionType
-    | SetStatusAT
-    | DeletePostAT
-    | ChangeNewTextActionType
-    | SavePhotoSuccessAT;
+    ReturnType<typeof addPost>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletePost>
+    | ReturnType<typeof savePhotoSuccess>
+    | ReturnType<typeof changeNewPostText>
 
-export const changeNewPostText = (text: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    } as const
-}
-export type ChangeNewTextActionType = ReturnType<typeof changeNewPostText>
+
 
 export const getUserProfile = (userId: number): ThunkApp => async dispatch => {
     const data = await profileAPI.getProfile(userId)

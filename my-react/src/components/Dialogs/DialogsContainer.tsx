@@ -1,6 +1,5 @@
 import {
-    DialogsInitialStateType, SendMessage,
-    updateNewMessageBody
+    DialogsInitialStateType, actions
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
@@ -9,7 +8,7 @@ import {AppRootStateType} from "../../redux/redux-store";
 
 type mapStateToPropsType ={
     dialogPage: DialogsInitialStateType
-    isAuth: boolean
+
 }
 type mapDispatchToPropsType = {
     sendMessage: (body: string) => void
@@ -21,14 +20,14 @@ export type DialogsPropsType = mapStateToPropsType & mapDispatchToPropsType
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     return {
         dialogPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
+
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        updateNewMessageBody : (body: string) => {dispatch(updateNewMessageBody(body))
+        updateNewMessageBody : (body: string) => {dispatch(actions.updateNewMessageBody(body))
         },
-        sendMessage: (body:string) => {dispatch(SendMessage(body))}
+        sendMessage: (body:string) => {dispatch(actions.SendMessage(body))}
     }
 }
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
