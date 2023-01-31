@@ -1,4 +1,4 @@
-import stopSubmit from "redux-form"
+import {stopSubmit} from "redux-form"
 import {ResultCodeEnum, securityAPI} from "../api/API";
 import {ThunkApp} from "./redux-store";
 import {authAPI} from "../api/AuthAPI";
@@ -13,15 +13,15 @@ const initialState = {
     captchaUrl: null as string | null
 }
 export type InitialAuthStateType = typeof initialState
-export const authReducer = (state = initialState, action: ActionsTypes): InitialAuthStateType => {
+export const authReducer = (state: InitialAuthStateType = initialState, action: ActionsTypes): InitialAuthStateType => {
     switch (action.type) {
         case SET_USER_DATA:
-            return state
+            return {...state}
         case GET_CAPTCHA_URL_SUCCESS:
             return {...state, ...action.payload}
 
         default:
-            state
+            return state
     }
 }
 
@@ -50,32 +50,32 @@ export const getCaptchaUrlSuccess = (captchaUrl: string) => ({type: GET_CAPTCHA_
 
 export const getAuthUserData = () => async (dispatch: any) => {
     const meData = await authAPI.me();
-    if (meData.resultCode === ResultCodeEnum.Success ){
-        const {id, login, email} = meData.data;
+    if (meData.resultCode === ResultCodeEnum.Success) {
+        const {id, email, login} = meData.data.data;
         dispatch(setAuthUserData(id, email, login, true));
     }
 }
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async(dispatch: any) =>{
-    const data = await authAPI.login(email,password, rememberMe, captcha);
-    if(data.resultCode === ResultCodeEnum.Success ){
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
+    const data = await authAPI.login(email, password, rememberMe, captcha);
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(getAuthUserData())
-    }else{
-        if(data.resultCode === ResultCodeEnum.CaptchaIsRequired){
+    } else {
+        if (data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
             dispatch(getCaptchaUrlSuccess)
         }
-        const message = data.messages.length > 0 ? data.messages[0]: "some error";
+        const message = data.messages.length > 0 ? data.messages[0] : "some error";
         dispatch(stopSubmit("login", {_error: message}));
     }
 }
-export const getCaptchaUrl = (): ThunkApp=> async(dispatch)=>{
+export const getCaptchaUrl = (): ThunkApp => async dispatch => {
     const response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))
 }
-export const logout = (): ThunkApp=>async (dispatch) =>{
+export const logout = (): ThunkApp => async dispatch => {
     const response = await authAPI.logout()
-    if(response.data.resultCode === ResultCodeEnum.Success){
-        dispatch(setAuthUserData(null, null, null,false))
+    if (response.data.resultCode === ResultCodeEnum.Success) {
+        dispatch(setAuthUserData(null, null, null, false))
     }
 }
 
