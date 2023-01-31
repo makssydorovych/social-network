@@ -56,20 +56,20 @@ export const getAuthUserData = () => async (dispatch: any) => {
     }
 }
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async(dispatch: any) =>{
-    const loginData = await authAPI.login(email,password, rememberMe, captcha);
-    if(loginData.resultCode === ResultCodeEnum.Success ){
+    const data = await authAPI.login(email,password, rememberMe, captcha);
+    if(data.resultCode === ResultCodeEnum.Success ){
         dispatch(getAuthUserData())
     }else{
-        if(loginData.resultCode === ResultCodeEnum.CaptchaIsRequired){
+        if(data.resultCode === ResultCodeEnum.CaptchaIsRequired){
             dispatch(getCaptchaUrlSuccess)
         }
-        let message = loginData.messages.length > 0 ? loginData.messages[0]: "some error";
+        const message = data.messages.length > 0 ? data.messages[0]: "some error";
         dispatch(stopSubmit("login", {_error: message}));
     }
 }
-export const getCaptchaUrl = (url): ThunkApp=> async(dispatch)=>{
+export const getCaptchaUrl = (): ThunkApp=> async(dispatch)=>{
     const response = await securityAPI.getCaptchaUrl()
-    const captchaUrl = response.data.url
+    const captchaUrl = response.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))
 }
 export const logout = (): ThunkApp=>async (dispatch) =>{
