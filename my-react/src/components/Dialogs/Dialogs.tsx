@@ -8,17 +8,16 @@ type PropsType ={
 	dialogPage: DialogsInitialStateType
 	sendMessage: (newText: string) => void
 }
+export type NewMessageFormType = {
+	newMessageBody: string
+}
 const Dialogs: React.FC<PropsType> = (props) => {
 	let state = props.dialogPage
 	let dialogsElement = state.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> );
 	let messagesElements = state.messages.map( m => <Message message={m.message} id={m.id}/>)
-	let newMessageBody = state.newMessageBody;
-	let addMessage =(values:{newMessageBody: string})=>{
-		props.sendMessage(values.newMessageBody)
-	}
-	let onSendMessageClick = () =>{
-		props.sendMessage(newMessageBody);
 
+	let addMessage =(values:NewMessageFormType)=>{
+		props.sendMessage(values.newMessageBody)
 	}
 	return (
 		<div  className={s.dialogs}>
@@ -29,7 +28,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
 			<div>{messagesElements}</div>
 
 		</div>
-			<AddMessageForm onSubmit={addNewMessage} />
+			<AddMessageForm onSubmit={addMessage} />
 		</div>
 	);
 };
