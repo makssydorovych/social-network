@@ -48,20 +48,20 @@ export const getCaptchaUrlSuccess = (captchaUrl: string) => ({type: GET_CAPTCHA_
 
 //////THUNK
 
-export const getAuthUserData = () => async (dispatch: any) => {
+export const getAuthUserData = (): ThunkApp => async dispatch => {
     const meData = await authAPI.me();
     if (meData.resultCode === ResultCodeEnum.Success) {
         const {id, email, login} = meData.data.data;
         dispatch(setAuthUserData(id, email, login, true));
     }
 }
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkApp => async dispatch  => {
     const data = await authAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(getAuthUserData())
     } else {
         if (data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
-            dispatch(getCaptchaUrlSuccess)
+            dispatch(getCaptchaUrl())
         }
         const message = data.messages.length > 0 ? data.messages[0] : "some error";
         dispatch(stopSubmit("login", {_error: message}));
