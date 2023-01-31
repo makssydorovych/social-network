@@ -1,41 +1,39 @@
-import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts";
-import React, {ChangeEvent} from 'react';
-import {MyPostsPropsType} from "./MyPostsContainer";
-
-
-
-const MyPosts = (props: MyPostsPropsType) => {
-    let postsElements =
-        props.posts.map(p => <Posts key={p.id} message={p.message} likesCount={p.likesCount} id={p.id}/>);
-
-    let onAddPost = () => {
-        props.addPost();
-
-
+import React from 'react';
+import AddPostForm from "./AddPostForm/AddPostForm";
+import {PostType} from "../../../redux/types";
+type PropsType ={
+    posts: PostType[]
+    addPost: (newPostText: string)=> void
+}
+const NewPost = (props: { addPost: (value: string) => void }) => {
+    const addNewPost = (values: { newPostText: string }) => {
+        props.addPost(values.newPostText);
+        values.newPostText = "";
     };
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newText = e.currentTarget.value;
-        props.updateNewPostText(newText);
-    }
+
     return (
-        <div className={s.postBlock}>
-            <h3>My post</h3>
-            <div>
-                <div>
-                    <textarea
-                        onChange={onPostChange}
-                        placeholder={"Add your post..."}
-                        value={props.newPostText}/>
-                </div>
-                <div>
-                    <button type={"submit"} onClick={onAddPost}>Add Post</button>
-                </div>
-            </div>
-            <div className={s.posts}>
-                {postsElements}
-            </div>
+        <div>
+            <AddPostForm onSubmit={addNewPost} />
         </div>
     );
 };
-export default MyPosts;
+
+export const MyPosts = React.memo((props: PropsType) => {
+    return (
+        <>
+            <div>
+                <NewPost addPost={props.addPost} />
+            </div>
+            <div>
+                {[...props.posts].reverse().map((post) => (
+                    <Posts
+                        message={post.message}
+                        key={`post${post.id}`}
+                        likesCount={post.likesCount}
+                    />
+                ))}
+            </div>
+        </>
+    );
+});

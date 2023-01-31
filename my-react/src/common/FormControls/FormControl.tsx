@@ -18,7 +18,6 @@ const FormControl: React.FC<FormControlPropsType> = ({meta: {touched, error}, ch
         </div>
     );
 }
-export default FormControl;
 
 export const TextArea: React.FC<WrappedFieldProps> = (props) => {
     const {input, meta, ...restProps} = props
@@ -44,5 +43,5 @@ export function createField<FormKeysType extends string>(placeholder: string | u
         />{text}
     </div>
 
-
 }
+export type GetStringKeysType <T>= Extract<keyof T, string>

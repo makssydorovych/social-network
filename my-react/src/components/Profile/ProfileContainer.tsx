@@ -6,9 +6,12 @@ import {getUserProfile} from "../../redux/profile-reducer";
 import {useNavigate, useParams} from 'react-router-dom';
 import {ProfileType} from "../../redux/types";
 import {AppRootStateType} from "../../redux/redux-store";
+import {compose} from "@reduxjs/toolkit";
 
-type PathParamType = {
+type PropsType = {
     userId: string | null
+    getUserProfile: (userId: number)=>void
+    isAuth: boolean
 }
 
 export function withRouter(Children: any) {
@@ -57,4 +60,6 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     }
 }
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);
+
+
+export default compose(connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent))
