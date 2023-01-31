@@ -44,7 +44,7 @@ export type DialogsInitialStateType = typeof initialState
 
 }
 export const actions ={
-    SendMessage: (newMessageBody: string) => ({type: 'DIALOGS/SEND_MESSAGE', newMessageBody} as const),
+    sendMessage: (newMessageBody: string) => ({type: 'DIALOGS/SEND_MESSAGE', newMessageBody} as const),
     updateNewMessageBody: (body: string) => ({type: 'DIALOGS/UPDATE_NEW_MESSAGE_BODY', body: body} as const)
 }
 

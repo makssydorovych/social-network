@@ -1,26 +1,25 @@
+import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ChangeEvent} from "react";
-import {DialogsPropsType} from "./DialogsContainer";
-import {useNavigate} from "react-router-dom";
-
-
-const Dialogs = (props: DialogsPropsType) => {
+import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
+type PropsType ={
+	dialogPage: DialogsInitialStateType
+	sendMessage: (newText: string) => void
+}
+const Dialogs: React.FC<PropsType> = (props) => {
 	let state = props.dialogPage
 	let dialogsElement = state.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> );
 	let messagesElements = state.messages.map( m => <Message message={m.message} id={m.id}/>)
 	let newMessageBody = state.newMessageBody;
+	let addMessage =(values:{newMessageBody: string})=>{
+		props.sendMessage(values.newMessageBody)
+	}
 	let onSendMessageClick = () =>{
 		props.sendMessage(newMessageBody);
 
 	}
-	let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) =>{
-		let body = e.currentTarget.value;
-		props.updateNewMessageBody(body);
-	}
-
-
 	return (
 		<div  className={s.dialogs}>
 			<div className={s.dialogsItem}>
@@ -28,13 +27,9 @@ const Dialogs = (props: DialogsPropsType) => {
 		</div>
 		<div className={s.messages}>
 			<div>{messagesElements}</div>
-			<div>
-				<div><textarea value={newMessageBody}
-							   onChange={onNewMessageChange}
-							   placeholder={"Enter yor message"}></textarea></div>
-				<div><button onClick={onSendMessageClick}>Send</button></div>
-			</div>
+
 		</div>
+			<AddMessageForm onSubmit={addNewMessage} />
 		</div>
 	);
 };

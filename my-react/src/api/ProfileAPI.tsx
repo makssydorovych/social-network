@@ -5,7 +5,7 @@ type SavePhotoResponse = {
     photos: PhotosType
 }
 export const profileAPI = {
-    getProfile(userId: number) {
+    getProfile(userId: number | null) {
         return instance.get<ProfileType>(`profile/` + userId).then(res=>res.data)
     },
     getStatus(userId: number) {

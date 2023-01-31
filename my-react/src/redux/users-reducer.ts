@@ -2,15 +2,16 @@ import {UserType} from "./types";
 import {ThunkApp} from "./redux-store";
 import { Dispatch} from "redux";
 import {usersAPI} from "../api/UsersAPI";
+import {upDateOjectInArray} from "../utils/object-helper";
 
 
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET-USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
-const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'USERS/TOGGLE-IS-FOLLOWING-PROGRESS'
+const FOLLOW = 'USERS/FOLLOW'
+const UNFOLLOW = 'USERS/UNFOLLOW'
+const SET_USERS = 'USERS/SET-USERS'
+const SET_CURRENT_PAGE = 'USERS/SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'USERS/SET-TOTAL-USERS-COUNT'
+const TOGGLE_IS_FETCHING = 'USERS/TOGGLE-IS-FETCHING'
 
 const initialState = {
     users: [] as Array<UserType>,
@@ -26,13 +27,13 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
         case FOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
+                users: upDateOjectInArray(state.users, action.userId, "id", {followed: true})
             }
 
         case UNFOLLOW :
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
+                users: upDateOjectInArray(state.users, action.userId, "id", {followed: false})
             }
         case SET_USERS :
             return {...state, users: action.users}
@@ -69,7 +70,6 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     isFetching,
     userId
 } as const)
-
 //TYPES AC
 export type FollowActionType = ReturnType<typeof followSuccess>
 export type UnfollowActionType = ReturnType<typeof unfollowSuccess>

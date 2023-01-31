@@ -24,7 +24,4 @@ export const getIsFetching = (state: AppRootStateType)=>{
 export const getFollowingInProgress = (state: AppRootStateType)=>{
     return state.usersPage.followingInProgress
 }
-export const countSomethingDifficult = (state: AppRootStateType)=>{
-    let count = 23;
-    return count
-}
+

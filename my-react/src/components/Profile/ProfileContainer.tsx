@@ -8,7 +8,7 @@ import {ProfileType} from "../../redux/types";
 import {AppRootStateType} from "../../redux/redux-store";
 
 type PathParamType = {
-    userId: string
+    userId: string | null
 }
 
 export function withRouter(Children: any) {
