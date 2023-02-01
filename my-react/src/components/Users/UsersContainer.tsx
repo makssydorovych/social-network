@@ -76,8 +76,6 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)
-
-
     }
 }
 

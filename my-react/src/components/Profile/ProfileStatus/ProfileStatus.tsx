@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-type ProfileStatusType = {
+type PropsType = {
     status: string;
     updateStatus: (value: string) => void;
 };
-export const ProfileStatus = (props: ProfileStatusType) => {
+export const ProfileStatus = (props: PropsType) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(props.status);
 

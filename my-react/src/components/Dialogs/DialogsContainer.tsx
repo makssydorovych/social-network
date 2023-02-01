@@ -13,7 +13,7 @@ const mapStateToProps = (state: AppRootStateType) => {
         messages: state.dialogsPage.messages,
     };
 };
-const mapDispatchToProps = (dispatch: AppDispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onSendMessageClick: (newMessageBody: string) => {
             dispatch(actions.sendMessage(newMessageBody));

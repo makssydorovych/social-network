@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "../../components/Users/users.module.css";
 
-const Preloader = () => {
+const Preloader:React.FC = () => {
     return (
         <div>
             <img

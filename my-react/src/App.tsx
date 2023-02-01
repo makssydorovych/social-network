@@ -6,12 +6,14 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import Preloader from "./common/preloader/Preloader";
 import {mapStateToPropsApp} from "./index";
+
 const DialogsContainer = React.lazy(()=>import("./components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(()=>import("./components/Profile/ProfileContainer"));
-import {withSuspense} from "./hoc/withSuspense"
+
 type MapPropsType  = ReturnType<typeof mapStateToPropsApp>
 type DispatchPropsType= {
     initializeApp: ()=>void
+    initialized: boolean;
 }
 // const SuspendedDialogs = withSuspense(DialogsContainer)
 // const SuspendedProfile = withSuspense(ProfileContainer)
@@ -33,6 +35,7 @@ class App  extends Component<MapPropsType & DispatchPropsType>  {
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar />
+                <React.Suspense fallback={<Preloader />}>
                 <Routes>
                     <Route path={"/"} element={<Navigate to="/profile" />} />
                     <Route path={"/profile"}>
@@ -43,8 +46,8 @@ class App  extends Component<MapPropsType & DispatchPropsType>  {
                     <Route path='/users' element={<UsersContainer pageTitle={"Users"}/>}/>
                     <Route path='/login' element={<Login />} />
                     <Route path='*' element={<div>404 NOT FOUND</div>} />
-
                 </Routes>
+                </React.Suspense>
             </div>
         );
     }

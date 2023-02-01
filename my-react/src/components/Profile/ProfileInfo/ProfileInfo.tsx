@@ -4,6 +4,7 @@ import Preloader from "../../../common/preloader/Preloader";
 import {ContactType, ProfileType} from "../../../redux/types";
 import ProfileStatus from "./ProfileStatus";
 import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
+import { logo } from "../../../assets/logo.png";
 
 type ProfileInfoType = {
 	profile: ProfileType | null;
@@ -71,10 +72,10 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status,
 	return (
 		<div>
 			<img
-				src={profile.photos.large || logo192}
+				src={profile.photos.large || logo}
 				alt="avatar"
 				className={s.profile_image}
-			/>
+			 />
 			{isOwner && <input type={"file"} onChange={onMainPhotoUpdate} />}
 			<ProfileStatus status={status} updateStatus={updateStatus} />
 			{editMode ? (

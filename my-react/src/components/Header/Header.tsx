@@ -3,16 +3,24 @@ import {NavLink} from "react-router-dom";
 type PropsType ={
 	isAuth: boolean
 	login: string | null
+	logout: ()=>void
 }
-const Header = (props: PropsType) => {
+export const Header = (props: PropsType) => {
 	return (
 		<header className={s.header}>
-			<img  alt="" src='https://res.cloudinary.com/dkombzxne/image/upload/v1637501991/minions_etaiwk.jpg'></img>
-			<div>
-				{props.isAuth? props.login: <NavLink to={"/login"}>Login</NavLink>}
+			<img src={logo} alt="logo" />
 
+			<div className={s.loginBlock}>
+				{props.isAuth ? (
+					<div className={s.item}>
+						{props.login} - <button onClick={props.logout}>Logout</button>
+					</div>
+				) : (
+					<NavLink to={"/login"} className={s.item}>
+						Login
+					</NavLink>
+				)}
 			</div>
 		</header>
 	);
 };
-export default Header;

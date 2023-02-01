@@ -12,6 +12,7 @@ type PropsType = {
     followingInProgress: Array<number>
     unfollow: (userId: number) => void
     follow: (userId: number) => void
+
 }
 
 const Users: React.FC<PropsType> = ({
@@ -30,6 +31,8 @@ const Users: React.FC<PropsType> = ({
                                      key={u.id}
                                      unfollow={props.unfollow}
                                      follow={props.follow}
+
+
 
                 />)
             }
