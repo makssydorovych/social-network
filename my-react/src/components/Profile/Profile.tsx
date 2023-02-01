@@ -1,18 +1,26 @@
 import React from "react";
 import s from "./Profile.module.css";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "../../redux/types";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 
-
-const Profile = (props: any) => {
+type PropsType = {
+    isOwner: boolean
+    status: string
+    profile: ProfileType | null
+    updateStatus: (value: string) => void
+    savePhoto: (value: File) => void
+    saveProfile: (value: Omit<ProfileType, 'userId' | 'photos'>) => Promise<any>
+}
+const Profile = (props: PropsType) => {
 
     return (
         <main className={s.content}>
-            <ProfileInfo props={props.profile}/>
+            <ProfileInfo isOwner={props.isOwner} profile={props.profile} status={props.status}
+                         updateStatus={props.updateStatus} savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}/>
             <MyPostsContainer
-
-
             />
         </main>
     );

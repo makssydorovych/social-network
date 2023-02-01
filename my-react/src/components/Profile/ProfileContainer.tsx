@@ -1,12 +1,13 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import s from "./Profile.module.css";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile} from "../../redux/profile-reducer";
-import {useNavigate, useParams} from 'react-router-dom';
+import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
+import {Params,useParams} from 'react-router-dom';
 import {ProfileType} from "../../redux/types";
 import {AppRootStateType} from "../../redux/redux-store";
 import {compose} from "@reduxjs/toolkit";
+import { Navigate } from "react-router-dom";
 
 class ProfileContainer extends React.Component<ComponentWithRouterType> {
     constructor(props: ComponentWithRouterType) {
@@ -43,7 +44,7 @@ class ProfileContainer extends React.Component<ComponentWithRouterType> {
         return <Profile isOwner={!this.props.params.userId} {...this.props} />;
     }
 }
-const mstp = (state: AppRootStateType) => ({
+const mapStateToProps = (state: AppRootStateType) => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
     authorizedUserId: state.auth.userId,
@@ -60,7 +61,7 @@ function withRouter(Component: ComponentType<ComponentWithRouterType>) {
 }
 
 export default compose<React.ComponentType>(
-    connect(mstp, {
+    connect(mapStateToProps, {
         getUserProfile,
         updateStatus,
         getStatus,
@@ -72,7 +73,7 @@ export default compose<React.ComponentType>(
 
 //types
 
-type MapStateToPropsType = ReturnType<typeof mstp>;
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>;
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void;
     getStatus: (userId: number) => void;
