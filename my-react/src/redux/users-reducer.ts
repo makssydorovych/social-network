@@ -1,8 +1,8 @@
 import {UserType} from "./types";
 import {ThunkApp} from "./redux-store";
-import { Dispatch} from "redux";
+import {Dispatch} from "redux";
 import {usersAPI} from "../api/UsersAPI";
-import {upDateOjectInArray} from "../utils/object-helper";
+import {updateObjectInArray} from "../utils/object-helper";
 
 
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'USERS/TOGGLE-IS-FOLLOWING-PROGRESS'
@@ -27,13 +27,13 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
         case FOLLOW:
             return {
                 ...state,
-                users: upDateOjectInArray(state.users, action.userId, "id", {followed: true})
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
             }
 
         case UNFOLLOW :
             return {
                 ...state,
-                users: upDateOjectInArray(state.users, action.userId, "id", {followed: false})
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
             }
         case SET_USERS :
             return {...state, users: action.users}

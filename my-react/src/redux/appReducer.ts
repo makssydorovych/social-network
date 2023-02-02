@@ -19,7 +19,7 @@ const appReducer = (state = initialState, action: ActionTypes):InitialStateType 
     }
 };
 const actions ={
-    initializedSuccess: () => ({type:'APP/INITIALIZED-SUCCESS', a:"aaa"} as const)
+    initializedSuccess: () => ({type:'APP/INITIALIZED-SUCCESS'} as const)
 }
 
 

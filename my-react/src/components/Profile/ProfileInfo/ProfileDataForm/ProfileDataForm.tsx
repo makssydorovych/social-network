@@ -19,7 +19,7 @@ const ProfileDataForm: FC<
             </div>
             {/*   {error & <div style={{ color: "red" }}>{error}</div>} */}
             <b>Full Name :</b>
-            {createField(profile.fullName, "fullName", [], Input)}
+            {createField(profile.fullName, "fullName", [], Input, {type: "input"} )}
 
             <p>
                 <b>Looking for a job: </b>
@@ -46,7 +46,7 @@ const ProfileDataForm: FC<
 
                 <p>
                     <b>Facebook:</b>
-                    {createField("Facebook", "facebook", [], Input)}
+                    {createField("Facebook", "facebook", [], Input, {type: "input"})}
                 </p>
 
                 <p>
@@ -55,12 +55,13 @@ const ProfileDataForm: FC<
                         profile.contacts.website ?? "Website",
                         "website",
                         [],
-                        Input
+                        Input,
+                        {type: "input"}
                     )}
                 </p>
 
                 <p>
-                    <b>Vk:</b> {createField(profile.contacts.vk ?? "VK", "vk", [], Input)}
+                    <b>Vk:</b> {createField(profile.contacts.vk ?? "VK", "vk", [], Input, {type: "input"})}
                 </p>
 
                 <p>
@@ -69,7 +70,8 @@ const ProfileDataForm: FC<
                         profile.contacts.twitter ?? "Twitter",
                         "twitter",
                         [],
-                        Input
+                        Input,
+                        {type: "input"}
                     )}
                 </p>
 
@@ -79,7 +81,8 @@ const ProfileDataForm: FC<
                         profile.contacts.instagram ?? "Instagram",
                         "instagram",
                         [],
-                        Input
+                        Input,
+                        {type: "input"}
                     )}
                 </p>
 
@@ -89,7 +92,8 @@ const ProfileDataForm: FC<
                         profile.contacts.youtube ?? "YouTube",
                         "youTube",
                         [],
-                        Input
+                        Input,
+                        {type: "input"}
                     )}
                 </p>
 
@@ -99,7 +103,8 @@ const ProfileDataForm: FC<
                         profile.contacts.github ?? "GitHub",
                         "gitHub",
                         [],
-                        Input
+                        Input,
+                        {type: "input"}
                     )}
                 </p>
 
@@ -109,7 +114,8 @@ const ProfileDataForm: FC<
                         profile.contacts.mainLink ?? "Main link",
                         "mainLink",
                         [],
-                        Input
+                        Input,
+                        {type: "input"}
                     )}
                 </p>
             </div>

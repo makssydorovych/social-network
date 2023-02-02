@@ -1,5 +1,8 @@
 import s from "./Header.module.css";
 import {NavLink} from "react-router-dom";
+import logo from "../../assets/img-1.jpg"
+
+
 type PropsType ={
 	isAuth: boolean
 	login: string | null

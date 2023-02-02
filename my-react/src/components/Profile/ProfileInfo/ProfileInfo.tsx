@@ -2,9 +2,10 @@ import s from "./ProfileInfo.module.css";
 import React, {ChangeEvent, FC, useState} from "react";
 import Preloader from "../../../common/preloader/Preloader";
 import {ContactType, ProfileType} from "../../../redux/types";
-import ProfileStatus from "./ProfileStatus";
+
 import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
-import { logo } from "../../../assets/logo.png";
+import  logo  from "../../../assets/logo.png";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 type ProfileInfoType = {
 	profile: ProfileType | null;

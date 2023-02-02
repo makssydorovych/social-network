@@ -2,7 +2,7 @@ import './index.css';
 import * as React from "react";
 import * as serviceWorker from './serviceWorker';
 import store, {AppRootStateType} from "./redux/redux-store";
-import {BrowserRouter, withRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createRoot } from 'react-dom/client';
@@ -14,7 +14,7 @@ export const mapStateToPropsApp = (state: AppRootStateType)=>({
     initialized: state.app.initialized
 })
 let AppContainer = compose <React.ComponentType>(
-    withRouter,
+    // withRouter,
     connect(mapStateToPropsApp, {initializeApp}))(App)
 
 

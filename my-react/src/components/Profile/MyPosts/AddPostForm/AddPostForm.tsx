@@ -5,10 +5,12 @@ import {maxLengthCreator, required} from "../../../../utils/validator";
 export type AddPostFormValueType = {
     newPostText: string
 }
-type PropsType={}
+type PropsType={
+    newPostText: string
+}
 type AddPostFormValuesKeys = GetStringKeysType<AddPostFormValueType>
 const maxLength30 = maxLengthCreator(30);
-const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesKeys, PropsType>> = (props) => {
+const AddPostForm: React.FC<InjectedFormProps<PropsType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
         <div>
@@ -17,7 +19,6 @@ const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesKeys, PropsType>>
                 component={Input}
                 name={"newPostText"}
                 validator={[required, maxLength30]}
-
             />
         </div>
             <div>

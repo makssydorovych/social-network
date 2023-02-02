@@ -1,13 +1,10 @@
-import {instance, ResponseType} from "./API";
+import {instance, ResponseType, UsersResponseDataType} from "./API";
 
 
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get<ResponseType>(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                return response.data
-            })
+        return instance.get<ResponseType<UsersResponseDataType>>(`users?page=${currentPage}&count=${pageSize}`).then(res=>res.data)
     },
     unfollow(follow: boolean, userId: number) {
         return instance.delete<ResponseType>(`follow/${userId}`).then(res=>res.data)

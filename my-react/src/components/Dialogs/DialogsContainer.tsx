@@ -5,6 +5,7 @@ import {AppRootStateType} from "../../redux/redux-store";
 import {compose} from "@reduxjs/toolkit";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import Dialogs from "./Dialogs";
+import {Dispatch} from "redux";
 
 const mapStateToProps = (state: AppRootStateType) => {
     return {
@@ -13,7 +14,7 @@ const mapStateToProps = (state: AppRootStateType) => {
         messages: state.dialogsPage.messages,
     };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onSendMessageClick: (newMessageBody: string) => {
             dispatch(actions.sendMessage(newMessageBody));

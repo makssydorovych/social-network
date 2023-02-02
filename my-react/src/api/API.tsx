@@ -15,7 +15,10 @@ export type ResponseType<D = {}, RC=ResultCodeEnum> = {
     resultCode: RC
 }
 
-
+export type UsersResponseDataType = {
+    items: number
+    totalCount: number
+}
 export enum ResultCodeEnum {
     Success = 0,
     Error = 1,
