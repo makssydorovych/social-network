@@ -6,7 +6,8 @@ import {sidebarReducer} from "./sidebar-reducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from 'redux';
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk"
-import appReducer from "./appReducer";
+import {appReducer} from "./appReducer";
+
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
@@ -31,6 +32,8 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 type PropertiesTypes<T> = T extends { [keys: string]: infer U } ? U : never
 export type InferActionsType<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>
 export type ThunkApp = ThunkAction<void, AppRootStateType, unknown, AnyAction>
+
+
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore
 window.store = store;

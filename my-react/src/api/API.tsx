@@ -1,5 +1,5 @@
 import axios from "axios";
-import {UserType} from "../redux/types";
+
 
 export const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -9,6 +9,7 @@ export const instance = axios.create({
             "27174707-1f72-4acd-871c-461d7e7565ed"
     }
 })
+
 export type ResponseType<D = {}, RC=ResultCodeEnum> = {
     data: D
     messages: Array<string>

@@ -1,5 +1,5 @@
 import {getAuthUserData} from "./auth-reducer";
-import {InferActionsType} from "./redux-store";
+import {AppThunkDispatch, InferActionsType} from "./redux-store";
 
 const initialState = {
     initialized: false
@@ -7,7 +7,7 @@ const initialState = {
 
 type ActionTypes = InferActionsType<typeof actions>
 type InitialStateType = typeof initialState
-const appReducer = (state = initialState, action: ActionTypes):InitialStateType => {
+export const appReducer = (state = initialState, action: ActionTypes):InitialStateType => {
     switch (action.type) {
         case 'APP/INITIALIZED-SUCCESS':
             return {
@@ -22,9 +22,7 @@ const actions ={
     initializedSuccess: () => ({type:'APP/INITIALIZED-SUCCESS'} as const)
 }
 
-
-
-export const initializeApp = ()=>(dispatch:any)=>{
+export const initializeApp = ()=>(dispatch:AppThunkDispatch)=>{
     let promise = dispatch(getAuthUserData())
     Promise.all([promise])
         .then(()=>{
@@ -32,4 +30,3 @@ export const initializeApp = ()=>(dispatch:any)=>{
         })
 }
 
-export default appReducer;

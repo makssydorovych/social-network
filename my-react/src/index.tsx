@@ -3,24 +3,24 @@ import * as React from "react";
 import * as serviceWorker from './serviceWorker';
 import store, {AppRootStateType} from "./redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 import {connect, Provider} from "react-redux";
+import {AppContainer} from "./App";
 import {compose} from "@reduxjs/toolkit";
 import {initializeApp} from "./redux/appReducer";
 
-export const mapStateToPropsApp = (state: AppRootStateType)=>({
-    initialized: state.app.initialized
-})
-let AppContainer = compose <React.ComponentType>(
-    // withRouter,
-    connect(mapStateToPropsApp, {initializeApp}))(App)
+// export const mapStateToPropsApp = (state: AppRootStateType)=>({
+//     initialized: state.app.initialized
+// })
+// let AppContainerr = compose <React.ComponentType>(
+//     // withRouter,
+//     connect(mapStateToPropsApp, {initializeApp}))(AppContainer)
 
 
 
 const container = document.getElementById('root') as HTMLElement;
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
+const root = createRoot(container);
 root.render(
     <BrowserRouter>
     <Provider store={store}>

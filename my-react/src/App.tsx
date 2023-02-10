@@ -5,19 +5,25 @@ import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import Preloader from "./common/preloader/Preloader";
-import {mapStateToPropsApp} from "./index";
+import {initializeApp} from "./redux/appReducer";
+import {connect} from "react-redux";
+import {AppRootStateType} from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const DialogsContainer = React.lazy(()=>import("./components/Dialogs/DialogsContainer"));
-const ProfileContainer = React.lazy(()=>import("./components/Profile/ProfileContainer"));
+// const DialogsContainer = React.lazy(()=>import("./components/Dialogs/DialogsContainer"));
+// const ProfileContainer = React.lazy(()=>import("./components/Profile/ProfileContainer"));
 
-type MapPropsType  = ReturnType<typeof mapStateToPropsApp>
-type DispatchPropsType= {
-    initializeApp: ()=>void
+
+
+type AppType = {
+    initializeApp: () => void;
     initialized: boolean;
-}
+};
 // const SuspendedDialogs = withSuspense(DialogsContainer)
 // const SuspendedProfile = withSuspense(ProfileContainer)
-class App  extends Component<MapPropsType & DispatchPropsType>  {
+class App  extends Component<any>  {
     catchAllUnhandledErrors = (e: PromiseRejectionEvent) =>{
         alert("Some error occured")
     }
@@ -52,6 +58,8 @@ class App  extends Component<MapPropsType & DispatchPropsType>  {
         );
     }
 
-};
-
-export default App;
+}
+const mapStateToProps = (state: AppRootStateType) => ({
+    initialized: state.app.initialized,
+});
+export const AppContainer = connect(mapStateToProps, { initializeApp })(App)
