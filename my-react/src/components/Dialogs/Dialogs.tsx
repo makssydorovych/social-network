@@ -1,35 +1,68 @@
-import React from 'react';
+import {FC} from "react";
 import s from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
-import AddMessageForm from "./AddMessageForm/AddMessageForm";
-type PropsType ={
-	dialogPage: DialogsInitialStateType
-	sendMessage: (newText: string) => void
-}
-export type NewMessageFormType = {
-	newMessageBody: string
-}
-const Dialogs: React.FC<PropsType> = (props) => {
-	let state = props.dialogPage
-	let dialogsElement = state.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> );
-	let messagesElements = state.messages.map( m => <Message message={m.message} id={m.id}/>)
+import {Link} from "react-router-dom";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {DialogsType} from "./DialogsContainer";
 
-	let addMessage =(values:NewMessageFormType)=>{
-		props.sendMessage(values.newMessageBody)
-	}
+const AddMessageForm: FC<
+	InjectedFormProps<NewMessageFormValuesType, PropsType>
+	> = (props) => {
 	return (
-		<div  className={s.dialogs}>
-			<div className={s.dialogsItem}>
-		{dialogsElement}
-		</div>
-		<div className={s.messages}>
-			<div>{messagesElements}</div>
+		<form onSubmit={props.handleSubmit}>
+			<div>
+				<Field
+					placeholder={"New Message"}
+					component={"textarea"}
+					name={"newMessageBody"}
+				/>
+			</div>
+			<div>
+				<button>Send message</button>
+			</div>
+		</form>
+	);
+};
+const AddMessageFormRedux = reduxForm<NewMessageFormValuesType>({
+	form: "dialogAddMessageForm",
+})(AddMessageForm);
 
-		</div>
-			<AddMessageForm onSubmit={addMessage} />
+
+
+
+const DialogItem = ({ name, id }: { name: string; id: string }) => (
+	<Link to={id} className={s.dialogs_item}>
+		{name}
+	</Link>
+);
+
+const Message = ({ message }: { message: string }) => (
+	<div className={s.message}>{message}</div>
+);
+
+export const Dialogs: FC<DialogsType> = (props) => {
+	const addNewMessage = (values: NewMessageFormValuesType) => {
+		props.onSendMessageClick(values.newMessageBody);
+	};
+
+	return (
+		<div className={s.dialogs}>
+			<div className={s.dialogs_items}>
+				{props.dialogs.map((dialog) => (
+					<DialogItem name={dialog.name} id={dialog.id} key={dialog.id} />
+				))}
+			</div>
+			<div className={s.messages}>
+				{props.messages.map((message) => (
+					<Message message={message.message} key={message.id} />
+				))}
+				<AddMessageFormRedux onSubmit={addNewMessage} />
+			</div>
 		</div>
 	);
 };
-export default Dialogs;
+
+//types
+type NewMessageFormValuesType = {
+	newMessageBody: string;
+};
+type PropsType = {};

@@ -2,19 +2,10 @@
 	display: grid;
 	grid-template-columns: 2fr 10fr;
 }
-.dialogsItem{
-	padding: 10px;
-	
+.dialogs_items{
+	display: flex;
+	flex-direction: column
 }
-.active{
-	color: gold !important;
-}
-.dialog{
-	color: rgb(48, 226, 72) !important;
-}
-.messages{
-	padding: 10px;
-}
-.message{
-	color: rgb(134, 39, 39);
+a:focus{
+	color: gold
 }
