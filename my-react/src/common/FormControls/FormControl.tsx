@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
-import s from "./FormsControls.module.css";
+import s from "./FormControl.module.css";
 import { Field, WrappedFieldMetaProps, WrappedFieldProps } from "redux-form";
-import { FieldValidatorType } from "../../../utils/validators/validators";
+import { FieldValidatorType } from "../../utils/validators/validatos";
 type FormControlPropsType = {
     meta: WrappedFieldMetaProps
     children: ReactNode
