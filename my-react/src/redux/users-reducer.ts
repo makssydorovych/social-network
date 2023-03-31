@@ -1,6 +1,7 @@
-import { usersAPI } from "../api/api";
-import { UserType } from "../types/types";
+
 import { AppThunkType } from "./redux-store";
+import {usersAPI} from "../api/UsersAPI";
+import {UserType} from "../types/types";
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";

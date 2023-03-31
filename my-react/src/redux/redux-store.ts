@@ -32,7 +32,12 @@ export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, any>;
 type PropertiesTypes<T> = T extends { [keys: string]: infer U } ? U : never
 export type InferActionsType<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>
 export type ThunkApp = ThunkAction<void, AppRootStateType, unknown, AnyAction>
-
+export type AppThunkType<ReturnType = void> = ThunkAction<
+    ReturnType,
+    AppRootStateType,
+    unknown,
+    any
+    >;
 
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore
