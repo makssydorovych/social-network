@@ -1,4 +1,4 @@
-import {instance, ResponseType,UsersResponseType} from "./API";
+import {instance, ResponseType,UsersResponseType} from "./api";
 
 
 

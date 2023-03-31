@@ -1,4 +1,4 @@
-import {instance, LoginResponseDataType, MeResponseDataType, ResponseType} from "./API";
+import {instance, LoginResponseDataType, MeResponseDataType, ResponseType} from "./api";
 
 export const authAPI = {
     me() {

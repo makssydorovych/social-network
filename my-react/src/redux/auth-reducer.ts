@@ -1,5 +1,5 @@
 import {stopSubmit} from "redux-form"
-import {ResultCodeEnum, securityAPI} from "../api/API";
+import {ResultCodeEnum, securityAPI} from "../api/api";
 import {ThunkApp} from "./redux-store";
 import {authAPI} from "../api/AuthAPI";
 

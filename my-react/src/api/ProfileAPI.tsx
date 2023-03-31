@@ -1,5 +1,5 @@
 import {PhotosType, ProfileType} from "../redux/types";
-import {instance, ResponseType} from "./API";
+import {instance, ResponseType} from "./api";
 
 type SavePhotoResponse = {
     photos: PhotosType

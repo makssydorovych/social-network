@@ -1,7 +1,8 @@
 import Posts from "./Post/Posts";
 import React from 'react';
 import AddPostForm from "./AddPostForm/AddPostForm";
-import {PostType} from "../../../redux/types";
+import {PostType} from "../../../types/types";
+
 type PropsType ={
     posts: PostType[]
     addPost: (newPostText: string)=> void
@@ -30,7 +31,7 @@ export const MyPosts = React.memo((props: PropsType) => {
                     <Posts
                         message={post.message}
                         key={`post${post.id}`}
-                        likesCount={post.likesCount}
+                        likes={post.likes}
                     />
                 ))}
             </div>
