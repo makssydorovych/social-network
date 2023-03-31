@@ -1,45 +1,68 @@
-import React from "react";
+import s from "./Users.module.css";
+import { Link } from "react-router-dom";
+
+import { UserType } from "../../types/types";
 import {Paginator} from "../../common/paginator/Paginator";
-import {UserType} from "../../redux/types";
-import User from "./User";
 
-type PropsType = {
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    onPageChanged: (pageNumber: number) => void
-    users: Array<UserType>
-    followingInProgress: Array<number>
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
-
-}
-
-const Users: React.FC<PropsType> = ({
-                                        currentPage,
-                                        totalUsersCount,
-                                        pageSize, onPageChanged, users, ...props
-                                    }) => {
-
-    return <div>
-        <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
-                   onPageChanged={onPageChanged}/>
-        <div>
-            {
-                users.map(u => <User user={u}
-                                     followingInProgress={props.followingInProgress}
-                                     key={u.id}
-                                     unfollow={props.unfollow}
-                                     follow={props.follow}
-
-
-
-                />)
-            }
+type UsersType = {
+    totalUsersCount: number;
+    pageSize: number;
+    currentPage: number;
+    inFollowingProgress: number[];
+    users: UserType[];
+    onPageChanged: (pageNumber: number) => void;
+    follow: (userId: number) => void;
+    unfollow: (userId: number) => void;
+};
+export const Users = (props: UsersType) => {
+    return (
+        <div className={s.pages}>
+            <Paginator
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                onPageChanged={props.onPageChanged}
+            />
+            {props.users.map((u) => (
+                <div key={`${u.id}`} className={s.user_container}>
+          <span>
+            <img
+                src={u.photos.small !== null ? u.photos.small : ""}
+                className={s.userPhoto}
+                alt={"avatar"}
+            />
+            <div>
+              {u.followed ? (
+                  <button
+                      onClick={() => {
+                          props.unfollow(u.id);
+                      }}
+                      disabled={props.inFollowingProgress.some((id) => id === u.id)}
+                  >
+                      Unfollow
+                  </button>
+              ) : (
+                  <button
+                      onClick={() => {
+                          props.follow(u.id);
+                      }}
+                      disabled={props.inFollowingProgress.some((id) => id === u.id)}
+                  >
+                      Follow
+                  </button>
+              )}
+            </div>
+          </span>
+                    <span>
+            <Link to={`/profile/${u.id}`}>
+              <span>
+                <div>{u.name}</div>
+                <div>{u.status}</div>
+              </span>
+            </Link>
+          </span>
+                </div>
+            ))}
         </div>
-    </div>
-
-}
-
-
-export default Users;
+    );
+};

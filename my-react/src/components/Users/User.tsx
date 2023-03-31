@@ -1,8 +1,9 @@
 import React from 'react';
-import {UserType} from "../../redux/types";
+
 import {Link} from "react-router-dom";
 import s from "./users.module.css"
 import logo from "../../assets/logo.png"
+import {UserType} from "../../types/types";
 
 type PropsType = {
     user: UserType
