@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {GetStringKeysType, Input} from "../../../../common/FormControls/FormControl";
+import {Input} from "../../../../common/FormControls/FormControl";
 import {maxLengthCreator, required} from "../../../../utils/validator";
 export type AddPostFormValueType = {
     newPostText: string
@@ -8,7 +8,7 @@ export type AddPostFormValueType = {
 type PropsType={
     newPostText: string
 }
-type AddPostFormValuesKeys = GetStringKeysType<AddPostFormValueType>
+
 const maxLength30 = maxLengthCreator(30);
 const AddPostForm: React.FC<InjectedFormProps<PropsType>> = (props) => {
     return (

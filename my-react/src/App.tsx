@@ -7,31 +7,21 @@ import Login from "./components/Login/Login";
 import Preloader from "./common/preloader/Preloader";
 import {initializeApp} from "./redux/appReducer";
 import {connect} from "react-redux";
-import {AppRootStateType} from "./redux/redux-store";
+import {AppDispatch, AppRootStateType} from "./redux/redux-store";
 import {withSuspense} from "./hoc/withSuspense";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-
-// const DialogsContainer = React.lazy(()=>import("./components/Dialogs/DialogsContainer"));
-// const ProfileContainer = React.lazy(()=>import("./components/Profile/ProfileContainer"));
 
 
+const DialogsContainer = React.lazy(()=>import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = React.lazy(()=>import("./components/Profile/ProfileContainer"));
 
 type AppType = {
     initializeApp: () => void;
     initialized: boolean;
 };
-// const SuspendedDialogs = withSuspense(DialogsContainer)
-// const SuspendedProfile = withSuspense(ProfileContainer)
-class App  extends Component<any>  {
-    catchAllUnhandledErrors = (e: PromiseRejectionEvent) =>{
-        alert("Some error occured")
-    }
-    componentDidMount() {this.props.initializeApp();
-        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
-    }
-    componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: any) {
-        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+
+class App extends React.Component<AppType> {
+    componentDidMount() {
+        this.props.initializeApp();
     }
     render(){
         if(!this.props.initialized){
@@ -41,7 +31,7 @@ class App  extends Component<any>  {
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar />
-                <React.Suspense fallback={<Preloader />}>
+
                 <Routes>
                     <Route path={"/"} element={<Navigate to="/profile" />} />
                     <Route path={"/profile"}>
@@ -52,8 +42,9 @@ class App  extends Component<any>  {
                     <Route path='/users' element={<UsersContainer pageTitle={"Users"}/>}/>
                     <Route path='/login' element={<Login />} />
                     <Route path='*' element={<div>404 NOT FOUND</div>} />
+                    {/*<Route path="/chat" element={<Chat />} />*/} --- fo future
                 </Routes>
-                </React.Suspense>
+
             </div>
         );
     }
@@ -62,4 +53,9 @@ class App  extends Component<any>  {
 const mapStateToProps = (state: AppRootStateType) => ({
     initialized: state.app.initialized,
 });
-export const AppContainer = connect(mapStateToProps, { initializeApp })(App)
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    initializeApp: () => {
+        dispatch(initializeApp());
+    },
+});
+export const AppContainer = connect(mapStateToProps, { initializeApp })(App);
