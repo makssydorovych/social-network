@@ -1,7 +1,7 @@
 
+import { UserType } from "../types/types";
 import { AppThunkType } from "./redux-store";
 import {usersAPI} from "../api/UsersAPI";
-import {UserType} from "../types/types";
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
@@ -102,8 +102,8 @@ export const requestUsers =
             dispatch(setCurrentPage(currentPage));
             dispatch(setFetching(true));
             usersAPI.getUsers(currentPage, pageSize).then((data) => {
-                dispatch(setUsers(data.items));
-                dispatch(setTotalCount(data.totalCount));
+                dispatch(setUsers(data.data.items));
+                dispatch(setTotalCount(data.data.totalCount));
                 dispatch(setFetching(false));
             });
         };
