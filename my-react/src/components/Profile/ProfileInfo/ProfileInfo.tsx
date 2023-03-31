@@ -5,7 +5,7 @@ import {ContactType, ProfileType} from "../../../redux/types";
 
 import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
 import  logo  from "../../../assets/logo.png";
-import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 type ProfileInfoType = {
 	profile: ProfileType | null;

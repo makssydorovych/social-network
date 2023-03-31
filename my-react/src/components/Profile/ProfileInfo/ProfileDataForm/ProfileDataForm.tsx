@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { InjectedFormProps, reduxForm } from "redux-form";
+import { ProfileType } from "../../../../types/types";
+
 import { FormDataFullType } from "../ProfileInfo";
 import {createField, Input, Textarea} from "../../../../common/FormControls/FormControl";
-import {ProfileType} from "../../../../redux/types";
 
 type ProfileDataFormType = {
     profile: ProfileType;
@@ -19,7 +20,7 @@ const ProfileDataForm: FC<
             </div>
             {/*   {error & <div style={{ color: "red" }}>{error}</div>} */}
             <b>Full Name :</b>
-            {createField(profile.fullName, "fullName", [], Input, {type: "input"} )}
+            {createField(profile.fullName, "fullName", [], Input)}
 
             <p>
                 <b>Looking for a job: </b>
@@ -27,7 +28,7 @@ const ProfileDataForm: FC<
                     "Are you looking for a job?",
                     "lookingForAJob",
                     [],
-                    Textarea,
+                    Input,
                     { type: "checkbox" }
                 )}
             </p>
@@ -37,7 +38,7 @@ const ProfileDataForm: FC<
                     "Are you looking for a job?",
                     "lookingForAJobDescription",
                     [],
-                    Input,
+                    Textarea,
                     { type: "checkbox" }
                 )}
             </p>
@@ -46,7 +47,7 @@ const ProfileDataForm: FC<
 
                 <p>
                     <b>Facebook:</b>
-                    {createField("Facebook", "facebook", [], Input, {type: "input"})}
+                    {createField("Facebook", "facebook", [], Input)}
                 </p>
 
                 <p>
@@ -55,13 +56,12 @@ const ProfileDataForm: FC<
                         profile.contacts.website ?? "Website",
                         "website",
                         [],
-                        Input,
-                        {type: "input"}
+                        Input
                     )}
                 </p>
 
                 <p>
-                    <b>Vk:</b> {createField(profile.contacts.vk ?? "VK", "vk", [], Input, {type: "input"})}
+                    <b>Vk:</b> {createField(profile.contacts.vk ?? "VK", "vk", [], Input)}
                 </p>
 
                 <p>
@@ -70,8 +70,7 @@ const ProfileDataForm: FC<
                         profile.contacts.twitter ?? "Twitter",
                         "twitter",
                         [],
-                        Input,
-                        {type: "input"}
+                        Input
                     )}
                 </p>
 
@@ -81,8 +80,7 @@ const ProfileDataForm: FC<
                         profile.contacts.instagram ?? "Instagram",
                         "instagram",
                         [],
-                        Input,
-                        {type: "input"}
+                        Input
                     )}
                 </p>
 
@@ -92,8 +90,7 @@ const ProfileDataForm: FC<
                         profile.contacts.youtube ?? "YouTube",
                         "youTube",
                         [],
-                        Input,
-                        {type: "input"}
+                        Input
                     )}
                 </p>
 
@@ -103,8 +100,7 @@ const ProfileDataForm: FC<
                         profile.contacts.github ?? "GitHub",
                         "gitHub",
                         [],
-                        Input,
-                        {type: "input"}
+                        Input
                     )}
                 </p>
 
@@ -114,8 +110,7 @@ const ProfileDataForm: FC<
                         profile.contacts.mainLink ?? "Main link",
                         "mainLink",
                         [],
-                        Input,
-                        {type: "input"}
+                        Input
                     )}
                 </p>
             </div>
