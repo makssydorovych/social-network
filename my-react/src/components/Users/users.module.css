@@ -1,9 +1,19 @@
-.userPhoto{
-    width: 50px;
-}
-.currentPage{
+.selectedPage{
     font-weight: bold;
+    font-size: 18px;
+    color: gold
 }
-.page {
+.user_container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 10px 30px;
+    background-color:rgba(0, 0, 0, 0.2)  ;
+    border-radius: 50px;
+    width: fit-content;
+    margin: 30px 30px;
+}
 
+.user_container img{
+    align-self: center;
 }
