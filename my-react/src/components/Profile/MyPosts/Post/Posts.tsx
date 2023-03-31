@@ -1,23 +1,20 @@
-import s from "./Posts.module.css";
 import React from "react";
+import s from "./MyPost.module.css";
 
-
-type PropsType = {
-    message: string
+type PropsTypes = {
+    message: string,
+    key: string
     likes: number
 }
+export const Post = (props: PropsTypes) => {
 
-const Posts = (props: PropsType) => {
     return (
-
-        <div className={s.item}>
+        <div className={s.item} key ={props.key}>
+            <img src="" alt=""/>
+            {props.message}
             <div>
-                <img src='http://www.hotavatars.com/wp-content/uploads/2019/01/I80W1Q0.png' alt={""}></img>
-                {props.message}
+                <span>likes {props.likes}</span>
             </div>
-            <span>Like</span>{props.likes}
         </div>
-
     );
 };
-export default Posts;

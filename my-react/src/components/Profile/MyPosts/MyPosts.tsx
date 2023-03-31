@@ -1,12 +1,34 @@
-import Posts from "./Post/Posts";
-import React from 'react';
-import AddPostForm from "./AddPostForm/AddPostForm";
-import {PostType} from "../../../types/types";
+import React, { FC } from "react";
+import { reduxForm, Field, InjectedFormProps } from "redux-form";
+import { MyPostsType } from "./MyPostsContainer";
+import {maxLengthCreator, required} from "../../../utils/validators/validatos";
+import {Textarea} from "../../../common/FormControls/FormControl";
+import {Post} from "./Post/Posts";
+const maxLength30 = maxLengthCreator(30);
+type AddPostFormType = {};
+const AddPostForm: FC<
+    InjectedFormProps<{ newPostText: string }, AddPostFormType> & AddPostFormType
+    > = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field
+                    placeholder={"New post text"}
+                    component={Textarea}
+                    name={"newPostText"}
+                    validate={[required, maxLength30]}
+                />
+            </div>
+            <div>
+                <button>Add Post</button>
+            </div>
+        </form>
+    );
+};
+const AddNewPostFormRedux = reduxForm<{ newPostText: string }>({
+    form: "ProfileAddNewPostFormRedux",
+})(AddPostForm);
 
-type PropsType ={
-    posts: PostType[]
-    addPost: (newPostText: string)=> void
-}
 const NewPost = (props: { addPost: (value: string) => void }) => {
     const addNewPost = (values: { newPostText: string }) => {
         props.addPost(values.newPostText);
@@ -15,12 +37,12 @@ const NewPost = (props: { addPost: (value: string) => void }) => {
 
     return (
         <div>
-            <AddPostForm onSubmit={addNewPost} />
+            <AddNewPostFormRedux onSubmit={addNewPost} />
         </div>
     );
 };
 
-export const MyPosts = React.memo((props: PropsType) => {
+export const MyPosts: FC<MyPostsType> = React.memo((props) => {
     return (
         <>
             <div>
@@ -28,7 +50,7 @@ export const MyPosts = React.memo((props: PropsType) => {
             </div>
             <div>
                 {[...props.posts].reverse().map((post) => (
-                    <Posts
+                    <Post
                         message={post.message}
                         key={`post${post.id}`}
                         likes={post.likes}

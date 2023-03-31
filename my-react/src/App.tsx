@@ -39,7 +39,7 @@ class App extends React.Component<AppType> {
                         <Route path=":userId" element={<ProfileContainer />} />
                     </Route>
                     <Route path='/dialogs' element={<DialogsContainer />} />
-                    <Route path='/users' element={<UsersContainer pageTitle={"Users"}/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
                     <Route path='/login' element={<Login />} />
                     <Route path='*' element={<div>404 NOT FOUND</div>} />
                     {/*<Route path="/chat" element={<Chat />} />*/} --- fo future
