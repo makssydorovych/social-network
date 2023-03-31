@@ -1,4 +1,5 @@
 import axios from "axios";
+import {UserType} from "../redux/types";
 
 
 export const instance = axios.create({
@@ -10,16 +11,17 @@ export const instance = axios.create({
     }
 })
 
-export type ResponseType<D = {}, RC=ResultCodeEnum> = {
+export type ResponseType<D={}, RC=ResultCodeEnum> = {
     data: D
     messages: Array<string>
     resultCode: RC
 }
-
-export type UsersResponseDataType = {
-    items: number
+export type UsersResponseType = {
+    items: Array<UserType>
     totalCount: number
+    error: string | null
 }
+
 export enum ResultCodeEnum {
     Success = 0,
     Error = 1,
@@ -28,11 +30,11 @@ export enum ResultCodeEnum {
 }
 
 export type MeResponseDataType = {
-    data: {
+
         id: number
         email: string
         login: string
-    }
+
 }
 export type LoginResponseDataType = {
     data: {

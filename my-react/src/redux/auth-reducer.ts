@@ -49,10 +49,11 @@ export const getCaptchaUrlSuccess = (captchaUrl: string) => ({type: GET_CAPTCHA_
 //////THUNK
 
 export const getAuthUserData = (): ThunkApp => async dispatch => {
+
     const meData = await authAPI.me();
     if (meData.resultCode === ResultCodeEnum.Success) {
-        let {id, email, login} = meData.data.data
-        dispatch(setAuthUserData(id, email, login, true));
+        let {id, login, email} = meData.data
+        dispatch(setAuthUserData(id, login, email, true));
     }
 }
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkApp => async dispatch  => {

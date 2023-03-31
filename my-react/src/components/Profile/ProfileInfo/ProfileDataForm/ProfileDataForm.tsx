@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { InjectedFormProps, reduxForm } from "redux-form";
 import { FormDataFullType } from "../ProfileInfo";
-import {createField, Input} from "../../../../common/FormControls/FormControl";
+import {createField, Input, TextArea} from "../../../../common/FormControls/FormControl";
 import {ProfileType} from "../../../../redux/types";
 
 type ProfileDataFormType = {
@@ -27,7 +27,7 @@ const ProfileDataForm: FC<
                     "Are you looking for a job?",
                     "lookingForAJob",
                     [],
-                    Input,
+                    TextArea,
                     { type: "checkbox" }
                 )}
             </p>

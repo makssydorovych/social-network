@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC, ReactNode } from "react";
 import {FieldValidatorType} from "../../utils/validator";
 import {Field, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
 import styles from "./FormControl.module.css"
 
 type FormControlPropsType = {
     meta: WrappedFieldMetaProps
-    children: React.ReactNode
+    children: ReactNode
 
 }
 
@@ -40,7 +40,8 @@ export function createField<FormKeysType extends string>(placeholder: string | u
             validate={validators}
             component={component}
             {...props}
-        />{text}
+            value={text}
+        />
     </div>
 
 }

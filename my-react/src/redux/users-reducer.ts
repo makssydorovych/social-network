@@ -40,7 +40,7 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USERS_COUNT :
-            return {...state, totalUsersCount: action.count}
+            return {...state, totalUsersCount: action.totalCount}
         case TOGGLE_IS_FETCHING :
             return {...state, isFetching: action.isFetching}
         case TOGGLE_IS_FOLLOWING_PROGRESS :
@@ -62,7 +62,7 @@ export const setUsers = (users: UserType[]) => ({type: SET_USERS, users} as cons
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setUsersTotalCount = (totalUsersCount: number) => ({
     type: SET_TOTAL_USERS_COUNT,
-    count: totalUsersCount
+    totalCount: totalUsersCount
 } as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
@@ -87,8 +87,8 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkApp =>
     dispatch(setCurrentPage(currentPage));
     const data = await usersAPI.getUsers(currentPage, pageSize)
     dispatch(toggleIsFetching(false))
-    dispatch(setUsers(data.items))
-    dispatch(setUsersTotalCount(data.totalCount));
+    dispatch(setUsers(data.data.items))
+    dispatch(setUsersTotalCount(data.data.totalCount));
 }
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>,
                                    userId: number,

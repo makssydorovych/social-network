@@ -17,7 +17,7 @@ type NewType = React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps
 const LoginForm: NewType = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit}>
-            {createField("Email", "email", [required], Input, captchaUrl)}
+            {createField("Email", "email", [required], Input, captchaUrl, "")}
             {createField("Password", "password", [required], Input, {
                 type: "password",
             })}
@@ -70,7 +70,7 @@ const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = ({
     }
     return (
         <>
-            <h1>LOGIN</h1>
+            <h2>LOGIN</h2>
             <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
         </>
     );
