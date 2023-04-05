@@ -1,0 +1,52 @@
+@import '../00-Common/styles/sass/mixins';
+@import '../00-Common/styles/sass/variables';
+
+.header {
+  @include flex(row, center, center, nowrap);
+  min-height: 60px;
+  max-height: 200px;
+  width: 100%;
+  position: fixed;
+  background-color: #363c42;
+  z-index: 5;
+  @media screen and (max-width: 950px) {
+    height: 90px;
+  }
+  .flexContainer {
+    margin: 0 auto;
+    @include flex(row, space-between, center, nowrap);
+    width: 85%;
+    gap: 10px;
+    @media screen and (max-width: 730px) {
+      flex-wrap: nowrap;
+    }
+    .logo {
+      width: 60px;
+      @media screen and (max-width: 730px) {
+        display: none;
+      }
+    }
+    .profileBlock {
+      @include flex(row, center, center, nowrap);
+      .profile {
+        @include flex(row, center, center, nowrap);
+        @media screen and (max-width: 730px) {
+          display: none;
+        }
+        .ava {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          border: 2px solid white;
+        }
+
+        .name {
+          margin: 0 10px;
+          font-size: 16px;
+          text-decoration: none;
+          color: $greyText;
+        }
+      }
+    }
+  }
+}
