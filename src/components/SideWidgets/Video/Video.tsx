@@ -11,29 +11,33 @@ export const Video = () => {
   const userId = useAppSelector(state => state.auth.data.id);
   const navigate = useNavigate();
 
-  // const [controls, setControls] = useState(false);
+
   const [currentVideo, setCurrentVideo] = useState(0);
 
   const toggleNextVideo = () => {
     if (currentVideo >= playList.length - 1) {
       setCurrentVideo(0);
+      // @ts-ignore
       videoRef.current!.src = playList[0].src;
-      // play()
+
     } else {
       setCurrentVideo(prev => prev + 1);
+      // @ts-ignore
       videoRef.current!.src = playList[currentVideo + 1].src;
-      // play()
+
     }
   };
   const togglePreviousVideo = () => {
     if (currentVideo > 0) {
       setCurrentVideo(prev => prev - 1);
+      // @ts-ignore
       videoRef.current!.src = playList[currentVideo - 1].src;
-      // play()
+
     }
   };
 
   useEffect(() => {
+    // @ts-ignore
     videoRef.current!.src = playList[0].src;
   }, []);
   useEffect(() => {

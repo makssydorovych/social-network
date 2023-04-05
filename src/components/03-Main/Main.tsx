@@ -30,6 +30,7 @@ const Main = () => {
           element={
             <MainWidget title={'Dialogs'}>
               <DialogsContain />
+                <MyPostsContain/>
             </MainWidget>
           }
         />
@@ -83,7 +84,6 @@ const Main = () => {
             </MainWidget>
           }
         />
-        <Route path="*" element={<div>404</div>} />
         <Route path="/" element={<Navigate to={'/profile'} />} />
         <Route
           path="/register"

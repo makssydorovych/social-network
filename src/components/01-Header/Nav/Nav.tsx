@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import css from './Nav.module.scss';
-import {FaHome, FaRegArrowAltCircleLeft, FaRegUserCircle} from 'react-icons/fa';
+import {FaMusic, FaRegArrowAltCircleLeft, FaUser, FaVideo} from 'react-icons/fa';
 
 type NavType = {
     logoutTC: () => void;
@@ -26,17 +26,25 @@ export const Nav = (props: NavType) => {
                 <NavLink to={'/profile/' + props.id}>
                     <li className={css.menuItem}>
             <span>
-              <FaRegUserCircle/>
+              <FaUser/>
             </span>
-                        About
+                       Profile
                     </li>
                 </NavLink>
-                <NavLink to={'/stream/' + props.id}>
+                <NavLink to={'/video'}>
                     <li className={css.menuItem}>
             <span>
-              <FaHome/>
+              <FaVideo/>
             </span>
-                        Stream
+                        Video
+                    </li>
+                </NavLink>
+                <NavLink to={'/music'}>
+                    <li className={css.menuItem}>
+            <span>
+              <FaMusic/>
+            </span>
+                        Music
                     </li>
                 </NavLink>
 

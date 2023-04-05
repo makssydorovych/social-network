@@ -23,7 +23,7 @@ export const Header = (props: HeaderType) => {
 				<img className={css.logo} src={logo} alt="logo" />
 				{!!props.authHeader.id && <ContainerAudioPlayer />}
 				{!props.authHeader.id ? (
-					<NavLink to={'/register'}>Registration</NavLink>
+					<NavLink to={'/register'} style={{textDecoration: "none", color: "white"}}>Registration</NavLink>
 				) : (
 					<div className={css.profileBlock}>
 						<NavLink className={css.profile} to={'/profile/' + props.id}>

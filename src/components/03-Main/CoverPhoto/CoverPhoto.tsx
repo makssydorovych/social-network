@@ -8,10 +8,6 @@ export const CoverPhoto = () => {
       <div className={css.photoBlock}>
         <img className={css.photo} src={cover} alt="coverPhoto" />
       </div>
-      <div className={css.coverMenu}>
-        <div className={css.menuItem}>Stream</div>
-        <div className={css.menuItem}>About</div>
-      </div>
     </div>
   );
 };

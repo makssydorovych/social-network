@@ -2,13 +2,13 @@
 @import '../00-Common/styles/sass/mixins';
 
 .footerBlock {
-  @include flex(column, center, center, '');
+  @include flex(column, space-between, center, '');
   box-sizing: border-box;
   grid-column: 1/4;
   grid-row: 3;
   background-color: #2a2e33;
   margin-top: 30px;
-  height: 60px;
+  height: 80px;
   .footerContainer {
     position: relative;
     &::after {

@@ -24,7 +24,7 @@ export const ProfileInfo = (props: ProfileType) => {
   const myId = useAppSelector(state => state.myProfile.myProfile.userId);
 
   if (!props.userProfile) {
-    return <Preloader />; //если нет профайла то крутилка
+    return <Preloader />;
   }
   const editable = edit && userId === myId;
   return (
@@ -50,7 +50,7 @@ export const ProfileInfo = (props: ProfileType) => {
           <ProfileData
             userProfile={props.userProfile}
             isOwner={props.isOwner}
-            // goToEditMode={activateEditMode}
+
           />
         )}
       </div>

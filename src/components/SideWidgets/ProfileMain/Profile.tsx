@@ -19,7 +19,7 @@ export type ProfileType = {
 export const Profile = (props: ProfileType) => {
   const isAuth = useAppSelector(state => state.auth.data.id);
   if (!isAuth) {
-    return <Navigate to={'/users'} />;
+    return <Navigate to={'/login'} />;
   }
 
   return (
@@ -34,8 +34,7 @@ export const Profile = (props: ProfileType) => {
         saveProfile={props.saveProfile}
         resultCode={props.resultCode}
       />
-      {/*posts*/}
-      {/*<MyPostsContainer/>*/}
+
     </>
   );
 };
