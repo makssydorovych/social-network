@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import { DataType } from '../../redux/auth-reducer';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo.svg';
 import { Nav } from './Nav/Nav';
 import avaNeo from '../../assets/images/avaNeo.png';
 import { UserPhotosProfileType } from '../../redux/profile-reducer';
@@ -15,17 +15,15 @@ type HeaderType = {
 	avatar: UserPhotosProfileType;
 	name: string;
 };
-
 export const Header = (props: HeaderType) => {
-	//let data = props.authHeader.data
-	console.log('header', props.authHeader.id);
+
 	return (
 		<header className={css.header}>
 			<div className={css.flexContainer}>
 				<img className={css.logo} src={logo} alt="logo" />
 				{!!props.authHeader.id && <ContainerAudioPlayer />}
 				{!props.authHeader.id ? (
-					<NavLink to={'/registr'}>Registration</NavLink>
+					<NavLink to={'/register'}>Registration</NavLink>
 				) : (
 					<div className={css.profileBlock}>
 						<NavLink className={css.profile} to={'/profile/' + props.id}>

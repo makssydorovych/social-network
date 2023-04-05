@@ -10,7 +10,7 @@ const LoginComponent = withSuspense(Login);
 
 export const LeftWidgets = () => {
   const isAuth = useAppSelector(state => state.auth.data.id);
-  console.log(isAuth);
+
 
   return (
     <div className={css.sideSection}>

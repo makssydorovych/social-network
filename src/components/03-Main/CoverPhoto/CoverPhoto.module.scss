@@ -2,14 +2,13 @@
 @import '../../00-Common/styles/sass/variables';
 
 .coverPhoto {
-  height: 480px;
+
   grid-column: 1/6;
   grid-row: 1;
   z-index: -1;
-  overflow: hidden;
+
   @include flex(column, center, center, nowrap);
   .photoBlock {
-    //border: 5px solid #881313;
     height: 420px;
     @include flex(row, center, center, nowrap);
     width: 100%;

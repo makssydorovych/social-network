@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import {NavLink} from 'react-router-dom';
 import css from './Nav.module.scss';
-import { FaHome, FaRegArrowAltCircleLeft, FaRegUserCircle } from 'react-icons/fa';
+import {FaHome, FaRegArrowAltCircleLeft, FaRegUserCircle} from 'react-icons/fa';
 
 type NavType = {
     logoutTC: () => void;
     id: number;
 };
-
 export const Nav = (props: NavType) => {
     const [showMenu, setShowMenu] = useState(false);
-
     const cssMenu = showMenu ? css.showMenu : '';
     const activeMenu = showMenu ? css.activeMenu : '';
 
@@ -28,7 +26,7 @@ export const Nav = (props: NavType) => {
                 <NavLink to={'/profile/' + props.id}>
                     <li className={css.menuItem}>
             <span>
-              <FaRegUserCircle />
+              <FaRegUserCircle/>
             </span>
                         About
                     </li>
@@ -36,7 +34,7 @@ export const Nav = (props: NavType) => {
                 <NavLink to={'/stream/' + props.id}>
                     <li className={css.menuItem}>
             <span>
-              <FaHome />
+              <FaHome/>
             </span>
                         Stream
                     </li>
@@ -45,7 +43,7 @@ export const Nav = (props: NavType) => {
                 <NavLink to={'/users'}>
                     <li className={css.menuItem} onClick={logoutHandler}>
             <span>
-              <FaRegArrowAltCircleLeft />
+              <FaRegArrowAltCircleLeft/>
             </span>
                         Log Out
                     </li>

@@ -33,7 +33,7 @@ const Main = () => {
             </MainWidget>
           }
         />
-        {/*<Route path="/posts/" element={<MainWidget title={"My Posts"}><MyPostsContain/></MainWidget>}/>*/}
+
         <Route
           path="/profile"
           element={
@@ -86,7 +86,7 @@ const Main = () => {
         <Route path="*" element={<div>404</div>} />
         <Route path="/" element={<Navigate to={'/profile'} />} />
         <Route
-          path="/registr"
+          path="/register"
           element={
             <MainWidget title={'Registration'}>
               <Registration />

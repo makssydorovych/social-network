@@ -1,10 +1,10 @@
 import React, { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import css from './InputFormik.module.scss';
 
-// тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
+
 type InputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 type SelectOptionsType = {
-    value: string | number;
+    value: any;
     title: string | number;
 };
 type InputFormikType = InputPropsType & {
@@ -104,7 +104,7 @@ export const SelectFormik: React.FC<InputFormikType> = ({
                     {label}{' '}
                 </label>
             )}
-            <select className={css.select} id={htmlFor} {...getFieldProps} {...restProps}>
+            <select className={css.select} id={htmlFor} {...getFieldProps} {...restProps} value="">
                 {selectOptions &&
                     selectOptions.map((e, i) => {
                         return (
