@@ -129,7 +129,7 @@ export const unfollow =
             usersAPI
                 .unfollow(userId)
                 .then((response) => {
-                    if (response.data.resultCode === 0) {
+                    if (response.resultCode === 0) {
                         dispatch(unfollowSuccess(userId));
                     }
                 })

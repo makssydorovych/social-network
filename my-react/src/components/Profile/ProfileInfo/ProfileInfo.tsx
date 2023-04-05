@@ -1,11 +1,12 @@
 import s from "./ProfileInfo.module.css";
 import React, {ChangeEvent, FC, useState} from "react";
 import Preloader from "../../../common/preloader/Preloader";
-import {ContactType, ProfileType} from "../../../redux/types";
+
 
 import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
 import  logo  from "../../../assets/logo.png";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
+import {ContactsType, ProfileType} from "../../../types/types";
 
 type ProfileInfoType = {
 	profile: ProfileType | null;
@@ -116,7 +117,7 @@ const ProfileData = ({ profile, setEditMode, isOwner }: ProfileDataType) => {
 				Object
 					.keys(profile.contacts)
 					.map((key)=>{
-						return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactType]}	/>
+						return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}	/>
 					})
 			}
 			</div>

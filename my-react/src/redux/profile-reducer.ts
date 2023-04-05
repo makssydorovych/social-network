@@ -82,7 +82,7 @@ export const getUserProfile =
     (userId: number): AppThunkType =>
         (dispatch) => {
             profileAPI.getProfile(userId).then((response) => {
-                dispatch(setProfile(response.data));
+                dispatch(setProfile(response));
             });
         };
 
@@ -90,7 +90,7 @@ export const getStatus =
     (userId: number): AppThunkType =>
         (dispatch) => {
             profileAPI.getStatus(userId).then((response) => {
-                dispatch(setStatus(response.data));
+                dispatch(setStatus(response));
             });
         };
 export const updateStatus =
@@ -98,7 +98,7 @@ export const updateStatus =
         async (dispatch) => {
             try {
                 let response = await profileAPI.updateStatus(status);
-                if (response.data.resultCode === 0) {
+                if (response.resultCode === 0) {
                     dispatch(setStatus(status));
                 }
             } catch (e) {
@@ -110,8 +110,8 @@ export const savePhoto =
     (photo: PhotosType): AppThunkType =>
         (dispatch) => {
             profileAPI.savePhoto(photo).then((response) => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setPhoto(response.data.data.photos));
+                if (response.resultCode === 0) {
+                    dispatch(setPhoto(response.data.photos));
                 }
             });
         };
@@ -124,13 +124,13 @@ export const saveProfile =
             console.log(profile);
             const newProfile = {...oldProfile, ...profile};
             const response = await profileAPI.saveProfile(newProfile);
-            if (response.data.resultCode === 0) {
+            if (response.resultCode === 0) {
                 dispatch(getUserProfile(userId as number));
             } else {
                 dispatch(
-                    stopSubmit("edit-profile", {_error: response.data.messages[0]})
+                    stopSubmit("edit-profile", {_error: response.messages[0]})
                 );
-                return Promise.reject(response.data.messages[0]);
+                return Promise.reject(response.messages[0]);
             }
         };
 
