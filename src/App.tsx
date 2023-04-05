@@ -4,7 +4,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import Preloader from "./common/preloader/Preloader";
+import Preloader from "./components/common/preloader/Preloader";
 import {initializeApp} from "./redux/appReducer";
 import {connect} from "react-redux";
 import {AppDispatch, AppRootStateType} from "./redux/redux-store";

@@ -18,7 +18,7 @@ import {
 } from "../../redux/selectors/userSelectors";
 
 import { AppRootStateType } from "../../redux/redux-store";
-import Preloader from "../../common/preloader/Preloader";
+import Preloader from "../common/preloader/Preloader";
 
 class UsersContainer extends React.Component<mapStateToPropsType & mapDispatchToPropsType> {
     componentDidMount() {

@@ -9,7 +9,7 @@ import {
     createField,
     GetStringKeys,
     Input,
-} from "../../common/FormControls/FormControl";
+} from "../common/FormControls/FormControl";
 import { AppRootStateType } from "../../redux/redux-store";
 type LoginFormOwnProps = {
     captchaUrl: string | null;

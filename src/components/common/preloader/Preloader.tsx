@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "../../components/Users/users.module.css";
+import s from "../../Users/users.module.css";
 
 const Preloader:React.FC = () => {
     return (

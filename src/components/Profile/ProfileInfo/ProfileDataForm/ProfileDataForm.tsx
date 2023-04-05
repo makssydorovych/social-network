@@ -3,7 +3,7 @@ import { InjectedFormProps, reduxForm } from "redux-form";
 import { ProfileType } from "../../../../types/types";
 
 import { FormDataFullType } from "../ProfileInfo";
-import {createField, Input, Textarea} from "../../../../common/FormControls/FormControl";
+import {createField, Input, Textarea} from "../../../common/FormControls/FormControl";
 
 type ProfileDataFormType = {
     profile: ProfileType;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../../../../common/FormControls/FormControl";
+import {Input} from "../../../common/FormControls/FormControl";
 import {maxLengthCreator, required} from "../../../../utils/validators/validatos";
 export type AddPostFormValueType = {
     newPostText: string

@@ -2,7 +2,7 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validatos";
 
-import {Input} from "../../../common/FormControls/FormControl";
+import {Input} from "../../common/FormControls/FormControl";
 type NewMessageFormType={
     message: string
 }

@@ -1,6 +1,6 @@
 import s from "./ProfileInfo.module.css";
 import React, {ChangeEvent, FC, useState} from "react";
-import Preloader from "../../../common/preloader/Preloader";
+import Preloader from "../../common/preloader/Preloader";
 
 
 import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
