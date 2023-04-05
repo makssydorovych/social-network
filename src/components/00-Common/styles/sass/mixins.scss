@@ -1,0 +1,66 @@
+@import 'variables';
+@mixin text($fontSize, $lineHeight, $color, $weigh) {
+  //font-family: $montserratFontFamily;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $color;
+  font-weight: $weigh;
+}
+
+@mixin widget() {
+  min-height: 80px;
+  background-color: #fff;
+  box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
+  border-radius: 7px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+@mixin messageDialog() {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  border: 1px solid #e3e3e3;
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #e0e0e0;
+    color: #0b6c00;
+    border-radius: 8em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30px;
+    border: 2px solid #858585;
+    background-color: #afafaf;
+    border-radius: 8em;
+  }
+}
+
+@mixin flex($direction, $justifyContent, $alignItems, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $wrap;
+}
+
+@mixin linkUnderline() {
+  position: relative;
+  text-decoration: none;
+  transition: 0.5s;
+  &::after {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    content: '';
+    width: 0;
+    height: 1px;
+    background-color: $fontRedColor;
+    transition: 0.5s;
+  }
+  &:hover {
+    color: $fontRedColor;
+    &::after {
+      width: 100%;
+    }
+  }
+}
