@@ -8,7 +8,7 @@ import {createRoot} from 'react-dom/client';
 import {connect, Provider} from "react-redux";
 import {AppContainer} from "./App";
 import {compose} from "@reduxjs/toolkit";
-import {initializeApp} from "./redux/appReducer";
+import {initializeApp} from "./redux/app-reducer";
 
 // export const mapStateToPropsApp = (state: AppRootStateType)=>({
 //     initialized: state.app.initialized

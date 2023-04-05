@@ -5,7 +5,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import Preloader from "./components/common/preloader/Preloader";
-import {initializeApp} from "./redux/appReducer";
+import {initializeApp} from "./redux/app-reducer";
 import {connect} from "react-redux";
 import {AppDispatch, AppRootStateType} from "./redux/redux-store";
 import {withSuspense} from "./hoc/withSuspense";
