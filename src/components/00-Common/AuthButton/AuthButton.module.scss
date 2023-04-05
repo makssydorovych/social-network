@@ -1,0 +1,38 @@
+@import '../../00-Common/styles/sass/variables';
+@import '../../00-Common/styles/sass/mixins';
+
+.link {
+  display: inline-block;
+  height: 42px;
+  margin: 10px 0 10px;
+  border: 0;
+  border-radius: 21px;
+  box-sizing: border-box;
+  background-color: $buttonPressed;
+  padding: 8px 21px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: none;
+  transition: all 0.5s ease;
+  font-size: 13px;
+  line-height: 14px;
+  cursor: pointer;
+  @include text(13px, 1.4, $fontWhiteColor, 600);
+  &:hover {
+    transition: 0.5s;
+    background-color: $buttonHover;
+    color: $buttonNormal;
+  }
+  &:active {
+    background-color: $buttonPressed;
+    color: $buttonNormal;
+  }
+  &:disabled {
+    background-color: $buttonNormal;
+    color: $buttonHover;
+    &:hover {
+      background-color: $buttonNormal;
+      cursor: default;
+    }
+  }
+}
