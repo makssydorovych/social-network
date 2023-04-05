@@ -2,7 +2,7 @@ import s from "./Users.module.css";
 import { Link } from "react-router-dom";
 
 import { UserType } from "../../types/types";
-import {Paginator} from "../common/paginator/Paginator";
+import {Paginator} from "../00-Common/paginator/Paginator";
 
 type UsersType = {
     totalUsersCount: number;

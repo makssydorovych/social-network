@@ -1,0 +1,44 @@
+@import '../styles/sass/variables.scss';
+@import '../styles/sass/mixins.scss';
+
+.paginator {
+    @include flex(row, center, center, nowrap);
+    border: 1px solid #e7e7e7;
+    background-color: #ffffff;
+    border-radius: 5px;
+    opacity: 80%;
+@media screen and (max-width: 730px) {
+    flex-wrap: wrap;
+}
+.buttonBlock {
+    padding: 10px;
+@media screen and (max-width: 730px) {
+    order: 1;
+}
+}
+
+.pages {
+    @include flex(row, center, center, nowrap);
+button {
+    @include text(14px, 1, $greyText4, 400);
+    padding: 3px 5px;
+    margin: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #d5d5d5;
+&:hover {
+     background-color: #cccccc;
+ }
+}
+
+.selectedPage {
+    font-weight: bold;
+    background-color: #e5e5e5;
+}
+}
+.countSelector {
+@media screen and (max-width: 730px) {
+    display: none;
+}
+}
+}
