@@ -1,45 +1,53 @@
-import {dialogsReducer} from "./dialogs-reducer";
-import {profileReducer} from "./profile-reducer";
-import {usersReducer} from "./users-reducer";
-import {authReducer} from "./auth-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from 'redux';
-import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk"
-import {appReducer} from "./appReducer";
+import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
+import { ProfileActionsType, profileReducer } from './profile-reducer';
+import { sidebarReducer } from './sidebar-reducer';
+import { DialogsActionsType, dialogsReducer } from './dialogs-reducer';
+import { UsersActionsType, usersReducer } from './users-reducer';
+import { AuthActionsType, authReducer } from './auth-reducer';
+import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { AppActionsType, appReducer } from './app-reducer';
+import { ChatActionsType, chatReducer } from './chat-reducer';
+import { MembersActionsType, membersReducer } from './members-reducer';
+import { myProfileActionsType, myProfileReducer } from './myProfile-reducer';
+import { audioPlayerReducer, PlayerActionsType } from './audioPlayer-reducer';
 
-
-const rootReducer = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
-    usersPage: usersReducer,
-    auth: authReducer,
     sidebar: sidebarReducer,
+    usersPage: usersReducer,
+    dialogsPage: dialogsReducer,
+    auth: authReducer,
     app: appReducer,
-    // chat: chatReducer,
+    chat: chatReducer,
+    members: membersReducer,
+    myProfile: myProfileReducer,
+    audioPlayer: audioPlayerReducer
+});
 
+// для работы с REDUX_DEVTOOLS: Window c Большой Буквы Window
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-})
+//export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
-export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
+export type RootState = ReturnType<typeof rootReducer>;
+// export type AppDispatch = typeof store.dispatch
+export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>;
 
-export type AppRootStateType = ReturnType<typeof rootReducer>
-export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
-export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
-export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
-export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, any>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>;
 
-type PropertiesTypes<T> = T extends { [keys: string]: infer U } ? U : never
-export type InferActionsType<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>
-export type ThunkApp = ThunkAction<void, AppRootStateType, unknown, AnyAction>
-export type AppThunkType<ReturnType = void> = ThunkAction<
-    ReturnType,
-    AppRootStateType,
-    unknown,
-    any
-    >;
-
-// а это, чтобы можно было в консоли браузера обращаться к store в любой момент
-// @ts-ignore
-window.store = store;
-export default store;
+export type ActionsType =
+    | DialogsActionsType
+    | ProfileActionsType
+    | UsersActionsType
+    | AuthActionsType
+    | AppActionsType
+    | ChatActionsType
+    | MembersActionsType
+    | myProfileActionsType
+    | PlayerActionsType;

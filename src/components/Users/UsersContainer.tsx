@@ -15,7 +15,7 @@ import {
     getPageSize,
     getTotalUsersCount,
     getCurrentPage,
-} from "../../redux/selectors/userSelectors";
+} from "../../redux/users-selectors";
 
 import { AppRootStateType } from "../../redux/redux-store";
 import Preloader from "../common/preloader/Preloader";
