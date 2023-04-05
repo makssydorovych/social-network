@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import {createRoot} from 'react-dom/client';
 import {connect, Provider} from "react-redux";
-import {AppContainer} from "./App";
+import App, {AppContainer} from "./App";
 import {compose} from "@reduxjs/toolkit";
 import {initializeApp} from "./redux/app-reducer";
 
@@ -24,7 +24,7 @@ const root = createRoot(container);
 root.render(
     <BrowserRouter>
     <Provider store={store}>
-    <AppContainer />
+    <App />
     </Provider>
     </BrowserRouter>
 )

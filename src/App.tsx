@@ -1,61 +1,64 @@
-import React, {Component} from "react";
-import Navbar from "./components/Navbar/Navbar";
-import {Navigate, Route, Routes} from "react-router-dom";
-import UsersContainer from "./components/Users/UsersContainer";
-import HeaderContainer from "./components/01-Header/HeaderContainer";
-import Login from "./components/Login/Login";
-import Preloader from "./components/common/preloader/Preloader";
-import {initializeApp} from "./redux/app-reducer";
-import {connect} from "react-redux";
-import {AppDispatch, AppRootStateType} from "./redux/redux-store";
-import {withSuspense} from "./hoc/withSuspense";
+import React from 'react';
+import './App.scss';
+import HeaderContainer from './components/01-Header/HeaderContainer';
+import { connect } from 'react-redux';
+import { RootState } from './redux/redux-store';
+import { compose } from 'redux';
+import { initializeTC } from './redux/app-reducer';
+import { Preloader } from './components/00-Common/Preloader/Preloader';
+import { Footer } from './components/05-Footer/Footer';
+import Main from './components/03-Main/Main';
+import { CoverPhoto } from './components/03-Main/CoverPhoto/CoverPhoto';
+import { LeftWidgets } from './components/02-LeftWidgets/LeftWidgets';
+import { RightWidgets } from './components/04-RightWidgets/RightWidgets';
 
+class App extends React.Component<AuthPropsType> {
+    catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {
+        console.log('Catched unhandled error: ', promiseRejectionEvent);
+    };
 
-const DialogsContainer = React.lazy(()=>import("./components/Dialogs/DialogsContainer"));
-const ProfileContainer = React.lazy(()=>import("./components/Profile/ProfileContainer"));
-
-type AppType = {
-    initializeApp: () => void;
-    initialized: boolean;
-};
-
-class App extends React.Component<AppType> {
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
-    render(){
-        if(!this.props.initialized){
-            return <Preloader/>
+
+    render() {
+        if (!this.props.initialized) {
+            return <Preloader />;
         }
         return (
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <Navbar />
+            <div className="app-wrapper">
+                <HeaderContainer />
+                <div className="main-section">
+                    <CoverPhoto />
 
-                <Routes>
-                    <Route path={"/"} element={<Navigate to="/profile" />} />
-                    <Route path={"/profile"}>
-                        <Route index element={<ProfileContainer />} />
-                        <Route path=":userId" element={<ProfileContainer />} />
-                    </Route>
-                    <Route path='/dialogs' element={<DialogsContainer />} />
-                    <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/login' element={<Login />} />
-                    <Route path='*' element={<div>404 NOT FOUND</div>} />
-                    {/*<Route path="/chat" element={<Chat />} />*/} --- fo future
-                </Routes>
-
+                    <LeftWidgets />
+                    <Main />
+                    <RightWidgets />
+                </div>
+                <Footer />
             </div>
         );
     }
-
 }
-const mapStateToProps = (state: AppRootStateType) => ({
-    initialized: state.app.initialized,
-});
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-    initializeApp: () => {
-        dispatch(initializeApp());
-    },
-});
-export const AppContainer = connect(mapStateToProps, { initializeApp })(App);
+
+export type AuthPropsType = MapStateToPropsType & MapDispatchToPropsType;
+
+const mapStateToProps = (state: RootState): MapStateToPropsType => {
+    return {
+        initialized: state.app.initialized
+    };
+};
+export default compose(
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>(mapStateToProps, { initializeApp: initializeTC })(
+        App
+    )
+);
+
+type MapStateToPropsType = {
+    initialized: boolean;
+};
+
+type MapDispatchToPropsType = {
+    initializeApp: () => void;
+};
