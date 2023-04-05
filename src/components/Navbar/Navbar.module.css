@@ -1,0 +1,14 @@
+ul li {
+	list-style-type:decimal;
+ }
+ .nav{
+	grid-area: n;
+	background: greenyellow;
+	padding: 20px;
+ }
+
+ .item a{
+	 color: white;
+	 text-decoration: none;
+ }
+ .item .active {color: gold;}
