@@ -1,14 +1,12 @@
 import './index.css';
 import * as React from "react";
 import * as serviceWorker from './serviceWorker';
-import store, {AppRootStateType} from "./redux/redux-store";
+import store from "./redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import {createRoot} from 'react-dom/client';
-import {connect, Provider} from "react-redux";
-import App, {AppContainer} from "./App";
-import {compose} from "@reduxjs/toolkit";
-import {initializeApp} from "./redux/app-reducer";
+import {Provider} from "react-redux";
+import App from "./App";
 
 // export const mapStateToPropsApp = (state: AppRootStateType)=>({
 //     initialized: state.app.initialized
