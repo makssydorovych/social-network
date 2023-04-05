@@ -1,0 +1,14 @@
+.aboutItem {
+  display: flex;
+  flex-direction: row;
+  min-height: 40px;
+  align-items: center;
+  border-bottom: 1px solid #dadada;
+  font-size: 18px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

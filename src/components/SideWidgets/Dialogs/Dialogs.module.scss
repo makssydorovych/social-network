@@ -1,0 +1,22 @@
+@import './src/components/00-Common/styles/sass/variables';
+@import './src/components/00-Common/styles/sass/mixins';
+
+.dialogs {
+  display: flex;
+  flex-direction: row;
+  /*margin: 10px;*/
+  /*border: 1px solid red;*/
+  gap: 10px;
+
+  .dialogWindow {
+    width: 35%;
+    @include messageDialog();
+  }
+  .messagesWindow {
+    @include flex(column, space-between, '', nowrap);
+    width: 65%;
+    .messages {
+      @include messageDialog();
+    }
+  }
+}
