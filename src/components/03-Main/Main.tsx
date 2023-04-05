@@ -4,7 +4,7 @@ import ProfileContainer from '../SideWidgets/ProfileMain/ProfileContainer';
 import UsersContainer from '../SideWidgets/Users/UsersContainer';
 import { withSuspense } from '../../hoc/withSuspense';
 import css from './Main.module.scss';
-import Chat from '../../pages/chat/Chat';
+import Chat from '../../pages/';
 import { MainWidget } from './MainWidget/MainWidget';
 import Registration from '../SideWidgets/Registration/Registration';
 import RecoveryPass from '../SideWidgets/RecoveryPass/RecoveryPass';

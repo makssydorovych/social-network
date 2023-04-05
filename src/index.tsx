@@ -1,12 +1,13 @@
 import './index.css';
 import * as React from "react";
-import * as serviceWorker from './serviceWorker';
-import store from "./redux/redux-store";
+
+
 import {BrowserRouter} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import {createRoot} from 'react-dom/client';
 import {Provider} from "react-redux";
 import App from "./App";
+import {store} from "./redux/redux-store";
 
 // export const mapStateToPropsApp = (state: AppRootStateType)=>({
 //     initialized: state.app.initialized
@@ -30,4 +31,4 @@ root.render(
 
 
 reportWebVitals();
-serviceWorker.unregister();
+// ServiceWorker.unregister();
