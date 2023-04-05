@@ -1,0 +1,209 @@
+@import '../../00-Common/styles/sass/mixins';
+@import '../../00-Common/styles/sass/variables';
+
+.player {
+  @include flex(row, center, center, wrap);
+  gap: 10px;
+  @media screen and (max-width: 730px) {
+    flex-direction: column;
+  }
+
+  .controls {
+    display: inherit;
+    font-size: 28px;
+    color: silver;
+    gap: 10px;
+    cursor: pointer;
+    .soundBlockMobile {
+      display: inherit;
+      align-items: center;
+      gap: 10px;
+      @media screen and (min-width: 730px) {
+        display: none;
+      }
+      .sound {
+        display: inherit;
+      }
+    }
+  }
+
+  .control {
+    display: inherit;
+    transition: color 0.8s;
+    &:hover {
+      transition: color 0.2s;
+      color: $fontTitleColor;
+    }
+  }
+  .rewind {
+    @media screen and (max-width: 730px) {
+      display: none;
+    }
+  }
+  .rangers {
+    display: inherit;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .progressBarBlock {
+      display: flex;
+      flex-direction: column;
+      .timers {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .timer {
+          color: silver;
+        }
+      }
+      .progress {
+        display: inherit;
+      }
+    }
+    .soundBlock {
+      display: inherit;
+      align-items: center;
+      gap: 10px;
+      @media screen and (max-width: 730px) {
+        display: none;
+      }
+      .sound {
+        display: inherit;
+      }
+
+      .speaker {
+        display: inherit;
+        align-items: start;
+        font-size: 28px;
+        color: silver;
+        transition: color 1s;
+        cursor: pointer;
+
+        &:hover {
+          transition: color 0.2s;
+          color: #2ee700;
+        }
+      }
+    }
+  }
+}
+
+.progressBar {
+  --bar-bg: #8a8a8a;
+  --seek-before-width: 0;
+  --seek-before-color: #ececec;
+  --knobby: silver;
+  --selectedKnobby: #ececec;
+
+  appearance: none;
+  background-color: var(--bar-bg);
+  position: relative;
+  border-radius: 2px;
+  height: 4px;
+  outline: none;
+  width: 250px;
+  cursor: pointer;
+}
+
+// progress bar - safari
+
+.progressBar::-webkit-slider-runnable-track {
+  background-color: var(--bar-bg);
+  position: relative;
+  border-radius: 2px;
+  height: 4px;
+  outline: none;
+  width: 250px;
+}
+
+// progress bar - firefox
+
+.progressBar::-moz-range-track {
+  background-color: var(--bar-bg);
+  position: relative;
+  border-radius: 2px;
+  height: 4px;
+  outline: none;
+  //width: 100px;
+}
+
+.progressBar::-moz-focus-outer {
+  border: 0;
+}
+
+// progress bar - chrome and safari
+
+.progressBar::before {
+  content: '';
+  height: 6px;
+  width: var(--seek-before-width);
+  background-color: var(--seek-before-color);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+// progress bar - firefox
+
+.progressBar::-moz-range-progress {
+  background-color: var(--seek-before-color);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  height: 4px;
+}
+
+// knobby - chrome and safari
+
+.progressBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--knobby);
+  cursor: pointer;
+  position: relative;
+  margin-left: 0;
+  margin-top: -5px;
+  z-index: 3;
+  box-sizing: border-box;
+  transition: background-color 0.2s;
+
+  &:hover {
+    transition: background-color 0.2s;
+    background-color: var(--selectedKnobby);
+  }
+}
+
+//knobby while dragging - chrome and safari
+
+.progressBar:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+  background: var(--selectedKnobby);
+}
+
+// knobby firefox
+
+.progressBar::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: transparent;
+  background-color: var(--knobby);
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  display: none;
+}
+
+//knobby while dragging firefox
+
+.progressBar:active::-moz-range-thumb {
+  transform: scale(1.2);
+  background: var(--selectedKnobby);
+}
