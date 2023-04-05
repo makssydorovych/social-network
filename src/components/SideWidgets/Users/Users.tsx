@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { UsersPropsType } from './UsersContainer';
-import { Paginator } from '../../00-Common/Paginator/Paginator';
+import { Paginator } from '../../00-Common/paginator/Paginator';
 import { User } from './User';
 import { SearchForm } from './SearchForm';
 import { FilterType, getUsersTC } from '../../../redux/users-reducer';

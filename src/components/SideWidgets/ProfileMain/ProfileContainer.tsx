@@ -12,7 +12,7 @@ import {
 } from '../../../redux/profile-reducer';
 import { useParams } from 'react-router-dom';
 import { compose } from 'redux';
-import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
+import { WithAuthRedirect } from '../../../hoc/withAuthRedirect';
 
 function withRouter(Component: any) {
   function ComponentWithRouterProp(props: any) {

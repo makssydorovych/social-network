@@ -3,7 +3,7 @@ import { newTextMessageOnChange, DialogsType, getDialogsTC, sendMessageTC } from
 import { RootState } from '../../../redux/redux-store';
 import { Dialogs } from './Dialogs';
 import { connect } from 'react-redux';
-import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
+import { WithAuthRedirect } from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 type MapStateToPropsType = {

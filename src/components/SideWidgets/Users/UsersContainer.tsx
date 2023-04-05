@@ -11,7 +11,7 @@ import {
   UserType
 } from '../../../redux/users-reducer';
 import { Users } from './Users';
-import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
+import { WithAuthRedirect } from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import {
   gePageSize,
