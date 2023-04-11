@@ -1,4 +1,4 @@
-#Social-network SPA
+# Social-network
 
 				Prewiev([https://pages.github.com/](https://makssydorovych.github.io/social-network/))
 ---
