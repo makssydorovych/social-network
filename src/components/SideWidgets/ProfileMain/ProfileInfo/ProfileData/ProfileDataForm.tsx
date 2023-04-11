@@ -98,7 +98,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({ userProfile, sa
         errors={formik.errors.lookingForAJob}
       />
       <InputFormik
-        onClick={() => formik.status('')}
+        // onClick={() => formik.status('')}
         htmlFor={'lookingForAJobDescription'}
         label={'about job'}
         getFieldProps={formik.getFieldProps('lookingForAJobDescription')}

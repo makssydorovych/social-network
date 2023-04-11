@@ -9,7 +9,7 @@ export const Footer = () => {
                 <div className={css.social}>
                     <a href="https://github.com/makssydorovych">GitHub</a>
                     <a href="https://www.linkedin.com/in/maksym-sydorovych-4571161a2/">LinkedIn</a>
-                    <a href="https://msaserj.ru">Maksym</a>
+                    <a href="https://makssydorovych.github.io/portfolio/">Maksym</a>
                 </div>
                 <h3 className={css.rights}>
                     © 2023. Copyright

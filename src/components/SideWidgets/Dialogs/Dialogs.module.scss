@@ -2,11 +2,10 @@
 @import './src/components/00-Common/styles/sass/mixins';
 
 .dialogs {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  /*margin: 10px;*/
-  /*border: 1px solid red;*/
-  gap: 10px;
+
+  gap: 1px;
 
   .dialogWindow {
     width: 35%;

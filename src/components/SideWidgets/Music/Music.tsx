@@ -29,6 +29,7 @@ export const Music = () => {
         const resultStyle = index === currentTrack ? css.selected : '';
         return (
           <div
+
             className={`${css.playList} ${resultStyle}`}
             key={index}
             onClick={() => changeTrack(index)}

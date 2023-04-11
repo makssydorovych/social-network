@@ -23,9 +23,7 @@ export const DialogItem: React.FC<DialogsItemType> = React.memo(({ dialogItem })
   const lastDialog = dateAgo(lastDialogActivityDate);
   console.log(lastDialogActivityDate);
   const time: number = Math.ceil(new Date(lastDialogActivityDate).getTime());
-  console.log(time);
   // @ts-ignore
-  console.log(new Date().getTime());
   return (
     <div className={css.dialogBlock}>
       <div onClick={startChat} className={css.photoBlock}>

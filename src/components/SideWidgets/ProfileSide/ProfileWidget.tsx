@@ -27,7 +27,11 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
   if (!avatar) {
     return <PreloaderSmall />; //если нет профайла то крутилка
   }
-
+  const linkClick = () => {
+    if (window.innerWidth <= 900) {
+      window.scrollTo(0, 0);
+    }
+  }
   return (
     <div className={css.sideProfile}>
       <div className={css.profileCover}></div>
@@ -41,7 +45,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
 
         <ul className={css.profileMenu}>
           <h3>My Profile</h3>
-          <NavLink to={'/profile/' + id}>
+          <NavLink to={'/profile/' + id} onClick={linkClick}>
             <li onClick={editFalseHandler}>
               <span>
                 <FaRegUserCircle />{' '}
@@ -58,7 +62,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
             </li>
           </NavLink>
           {userId && (
-            <NavLink to={'/music'}>
+            <NavLink to={'/music'} onClick={linkClick}>
               <li>
                 <span>
                   <FaMusic />{' '}
@@ -68,7 +72,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
             </NavLink>
           )}
           {userId && (
-            <NavLink to="/video">
+            <NavLink to="/video" onClick={linkClick}>
               <li>
                 <span>
                   <FaVideo />
@@ -98,7 +102,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
               Dialogs
             </li>
           </NavLink>
-          <NavLink to="/chat">
+          <NavLink to="/chat" onClick={linkClick}>
             <li>
               <span>
                 <FaRegComments />
