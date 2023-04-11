@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-  Holidaze is a fictional company which displays a number of different establishments in Bergen, Norway. The project is created to showcase my abilities acquired during the past two years of my education, and is the assignment of my final exam as a Frontend Develop at Noroff. 
+This site was built using [GitHub Pages](https://pages.github.com/)
 ---
 ![image](https://res.cloudinary.com/dkombzxne/image/upload/v1681205473/Social-network_slw3ed.png)
 
