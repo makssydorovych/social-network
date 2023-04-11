@@ -1,6 +1,6 @@
 # Social-network
 
-				This site was built using [GitHub Pages](https://pages.github.com/).
+This site was built using [GitHub Pages](https://pages.github.com/).
 ---
 ![image](https://res.cloudinary.com/dkombzxne/image/upload/v1681205473/Social-network_slw3ed.png)
 
