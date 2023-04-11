@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import css from './Nav.module.scss';
 import {FaMusic, FaRegArrowAltCircleLeft, FaUser, FaVideo} from 'react-icons/fa';
 
+
 type NavType = {
     logoutTC: () => void;
     id: number;

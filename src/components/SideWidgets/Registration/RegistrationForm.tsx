@@ -28,7 +28,7 @@ type RegistrationFormType = {
 
 export const RegistrationForm: React.FC<RegistrationFormType> = ({ registrTC }) => {
   const isFetching = useAppSelector(state => state.app.fetching);
-  console.log('RERENDER');
+
   const formik = useFormik({
     initialValues: {
       login: '',
@@ -77,8 +77,8 @@ export const RegistrationForm: React.FC<RegistrationFormType> = ({ registrTC }) 
   return (
     <form className={css.loginForm} onSubmit={formik.handleSubmit}>
       <p>
-        <b>Attention!</b> It's just a registration form. Unfortunately, the API of this social network does not provide
-        registration endpoints.
+        <b>It's just a registration form, the API of this social network does not provide
+        registration endpoints.</b>
       </p>
       <p>
         If you want to see a regular user account, please login with: <b>Login:</b> free@samuraijs.com <b>Password:</b>{' '}

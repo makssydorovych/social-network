@@ -104,7 +104,7 @@ export const LoginForm: React.FC<LoginFormType> = ({ loginTC, captchaUrl }) => {
         <AuthButton type="submit">Login</AuthButton>
         {isFetching && <PreloaderSmall />}
         <div className={css.forgot}>
-          <NavLink className={css.navlink} onClick={onCancelClick} to={'/registr'}>
+          <NavLink className={css.navlink} onClick={onCancelClick} to={'/register'}>
             Register account
           </NavLink>
           <NavLink className={css.navlink} onClick={onCancelClick} to={'/recovery'}>

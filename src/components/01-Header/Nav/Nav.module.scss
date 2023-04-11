@@ -4,8 +4,9 @@
 .menuButton {
   @include flex(row, center, center, nowrap);
   position: relative;
-  width: 30px;
-  height: 60px;
+  width: 40px;
+  min-height: 40px;
+  max-height: 40px;
   background-color: #3a3a3a;
   transition: 0.2s;
   @media screen and (max-width: 950px) {
@@ -24,6 +25,7 @@
       font-size: 24px;
       height: 100%;
       content: '^';
+      color: white;
       padding: 0;
       top: -4px;
       left: 0;
@@ -66,6 +68,8 @@
   .showMenu {
     display: block;
     opacity: 90%;
+
+
   }
 }
 .activeMenu {
