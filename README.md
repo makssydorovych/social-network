@@ -1,6 +1,6 @@
 # Social-network
 
-                                          [Preview](https://makssydorovych.github.io/social-network/)
+[Preview](https://makssydorovych.github.io/social-network/)
 
 ![image](https://res.cloudinary.com/dkombzxne/image/upload/v1681205473/Social-network_slw3ed.png)
 
