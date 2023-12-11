@@ -12,7 +12,7 @@ Viewing the user's profile, a form for editing your profile, the ability to chan
 Implemented a small general chat for all users on web sockets.
 As for the layout, used grid-layout and flex for better responsibility, and preproc SCSS.
 You can also login and test this project.
-Used technologies of old projects like class components with HOC's.
+Used technologies of old projects like class components.
 
 ### Technologies
 
